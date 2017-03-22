@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+//
+//        var i = new RegExp("dga","gi");
+var i = new RegExp("dga","i");
+        var i = /dga/i;           //基本上用这种方法写
+        //ignoreCase 忽略大小写
+        /*   g (全文查找)
+             i （忽略大小写）
+             m（多行查找）
+        * */
+        //var i = new RegExp("模式字符串","标志");
+        alert(i.test("dGaIdjf"));
+
+        /* 和正则表达式相关的方法和属性
+            正则表达式对象的方法：
+            test,返回一个Boolean值，它指出在被查找的字符串中是否存在模式。如果存在返回true，否则就是false
+            exec,用正则表达式模式在字符串中运行查找，并返回包含该查找结果的一个数组
+            compile
+
+            正则表达式对象的属性
+            source,返回正则表达式模式的文本的副本。只读
+            lastIndex
+            indexof('要查找的字符串'，‘从哪个位置开始查找’)     返回索引位置
+            $1...$9,
+            input（$_）,
+            lastMatch($&),
+            lastParen($+),
+            leftContext($~),
+            rightContext($'),
+
+            String对象一些和正则表达式相关的方法
+
+            match,找到一个或多个正则表达式的匹配
+            replace
+            search
+            split,
+
+        *
+        * */
+
+        var osVersion = "Ubuntu 8";
+        var re = /^[a-z]+\s+\d+$/i;   //+好表示多个^字符表示开始 $表示结束 \s表示一个或多个空格 制表符 回车   \d表示0-
+        alert(re.test(osVersion));
+  //--------------------------分组---------------------
+        var ree = /^（[a-z]+）\s+（\d+）$/i;   //此处加括号就是为了分组
+        alert(re.exec(osVersion));
+        alert("系统名称："+/\w/.exec(osVersion));
+        alert("版本号："+/\d/.exec(osVersion));
+        var a = re.exec(osVersion);
+        alert(a[0]);           //与整个正则表达式匹配的
+        alert(a[1]);          //第一个分组
+        alert(a[2]);           //第二个分组
+        var s = "----abc123----";
+        alert(s.replace(/-/g,'#'));        //将一个字符串中的-全部替换成#   如果后面不加g就只能替换第一个  这就是g的作用
+        alert(s.replace(/-+/g,'#'));     //将多个连续的-号替换为一个#
+
+        s=prompt("请输入你的出身日期（如1990-4-7）:",'');
+        var date = s.split(/[^0-9]+/);
+        var year = date[0];
+            month = date[1];
+            day = date[2];
+        alert("Year:"+year+"\nMonth:"+month+"\nDay:"+day);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

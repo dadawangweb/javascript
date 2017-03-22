@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-2.2.3.min.js"></script>
+</head>
+<body>
+<div class="right_top_layout_item">
+    <form>
+        <h3>筛选</h3>
+        <div class='filter'>
+            <ul>
+                <li>
+                    <b>覆盖国家：</b>
+                    <select name="country_cover" class="country_cover">
+                        <option value="">请选择</option>
+                    </select>
+                </li>
+                <li>
+                    <b>运营商：</b>
+                    <select name="operator_id" class="operator_id">
+                        <option value="">请选择</option>
+                    </select>
+                </li>
+                <li>
+                    <b>负责人：</b>
+                    <select name="supporter_id" class="supporter_id">
+                        <option value="">请选择</option>
+                    </select>
+                </li>
+            </ul>
+        </div>
+
+        <div class='filter_button'>
+            <button class="btn_select reset btn_srp" type="button">重置</button>
+            <button class='btn_select btn_srp' type="submit">查询</button>
+        </div>
+    </form>
+</div>
+<script>
+    jQuery(function ($) {
+        var countrycover = [{value: "AD", text: "AD-Andorra"}, {
+            value: "AE",
+            text: "AE-United Arab Emirates"
+        }, {value: "AF", text: "AF-Afghanistan"}, {value: "AG", text: "AG-Antigua and Barbuda"}];
+        var operatorid = [{value: "111", text: "2DEGREE"}, {value: "112", text: "A1"}, {
+            value: "44",
+            text: "AIRTEL"
+        }, {value: "94", text: "AIS"}];
+        var supportedid = [{value: "2", text: "test"}, {value: "12", text: "黎珊"}, {
+            value: "13",
+            text: "兰晖"
+        }, {value: "15", text: "殷春晖"}];
+//        $.ajax({
+//            type: "POST",
+//            url: "test.php",
+//            dataType: "JSON",
+//            success:function (txy) {
+//                var data = eval ("(" + txt + ")");
+        //回调函数（makeFilterColumn）
+//            }
+//        });
+
+        //------------initFilter-----------------
+
+        makeFilterColumn('supporter_id', supportedid);
+        makeFilterColumn('operator_id', operatorid);
+        makeFilterColumn('country_cover', countrycover);
+        function makeFilterColumn(column_name, data) {
+            var length = data.length;
+            for (var n = 0; n < length; n++) {
+                $("." + column_name + "").append("<option value = '" + data[n].value + "'>" + data[n].text + "</option>");
+            }
+        };
+
+        //-----------initTable---------------
+
+
+    });
+</script>
+</body>
+</html>

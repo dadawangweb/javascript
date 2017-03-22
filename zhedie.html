@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+<style>
+    .glyphiconn{
+        transform:rotate(90deg);
+        -ms-transform:rotate(90deg); 	/* IE 9 */
+        -moz-transform:rotate(90deg); 	/* Firefox */
+        -webkit-transform:rotate(90deg); /* Safari 和 Chrome */
+        -o-transform:rotate(90deg); 	/* Opera */
+    }
+
+</style>
+<body>
+<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo" >
+    简单的可折叠组件
+</button>
+
+<div id="demo" class="collapse in" style="background-color: #00a8e6">
+    <table border="1px" style="width: 500px; height: 800px">
+        <tr>
+            <th>水果</th>
+            <th>汽车</th>
+            <th>房子</th>
+        </tr>
+        <tr>
+            <td>香蕉</td>
+            <td>宝马</td>
+            <td>海景房</td>
+        </tr>
+    </table>
+</div>
+
+<span class="glyphicon glyphicon-play"></span>
+<div class="panel panel-default">
+    <div class="panel-heading"  >
+        <h4 class="panel-title">
+
+            <a data-toggle="collapse" data-parent="#accordion"
+               href="#collapseThree">
+                <img src="img/down2.png" style="width: 25px;height: 25px">
+                 点击我进行展开，再次点击我进行折叠。第 3 部分
+            </a>
+        </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+        <div class="panel-body">
+            <table border="1px" style="width: 500px; height: 800px">
+                <tr>
+                    <th>水果</th>
+                    <th>汽车</th>
+                    <th>房子</th>
+                </tr>
+                <tr>
+                    <td>香蕉</td>
+                    <td>宝马</td>
+                    <td>海景房</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div>
+    <p class="test">woshi yige sha b</p>
+</div>
+<script>
+    $(".glyphicon").on('click',function () {
+       $(this).toggleClass("glyphiconn");
+    });
+    jQuery(function ($) {
+       alert($(".test").prop("class"));
+    });
+</script>
+</body>
+</html>

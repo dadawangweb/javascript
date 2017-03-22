@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //------------函数的创建方式------------
+        function f1() {
+            alert('我是一个兵');
+        }
+
+        var a = function () {
+            alert("我是两个兵");
+        }
+
+        f1();
+        a();           //其实也可以这样写(a)();
+
+        (function () {                 //这个其实就是有a演变过来的   后面括号表示立即执行  可以存放参数  为了后面闭包
+            alert("我是三个兵");
+        })();
+
+        (function (p) {
+            alert(p);
+        })(123);
+
+        //-------------arguments对象-----------------
+        function arg(a,b,c) {
+            //在函数执行时有个arguments对象，保存所有的参数
+            //arguments对象，类似数组，可以用下标访问，并且有length属性
+//            alert(arguments);
+            alert(arguments[3]);
+            alert(arguments.length);
+            alert(a+"\n"+b+"\n"+c);
+        }
+        arg(1,2,3,4);
+
+
+        //--------------闭包------------------------------------------
+        //闭包，指的是词法表示包括不被计算的变量的函数，也就是说，函数可以使用函数之外定义的变量
+        var g = "全局变量！！！";                   //这里讲的还是函数的嵌套使用
+        function fnA() {
+            var a = "A";
+            //alert(g);
+            fnB();        //注意这里还是要执行的
+            function  fnB() {
+                var b = "B";
+                alert(g);    //全局变量，在任何函数的任何位置都可以访问得到
+                alert(a);    //可以访问到a
+                alert(c);    //但不可以访问c
+                function fnC() {
+                    var c = "C";
+                    alert(a+"\n"+b);     //只要遵循从里向外看的原则  看到的变量都可以访问到最终值
+                }                         //在函数声明处向函数外部看到的声明的所有变量，在 函数内部都能访问到他们的最终值
+                fnC();
+            }
+        }
+
+        //fnB()        在这里是不能访问到的  因为函数换种方式写就是变量了  这个函数就相当于局部变量 外面是访问不到的  上面提示也有把锁  表示访问不到
+
+        //-----------闭包详解-----------------
+        function outer() {
+            var a = 1212,b = 1234;
+            function inner() {
+                return a;
+            }
+            inner.function_closure= {a:1212,b:1234};          //这边是自定义的  其实是不存在的
+            return inner;              //这里的返回值为函数类型   要想使用就必须调用（）
+        }
+        var inner = outer();
+        alert(inner());
+
+
+        function each() {
+            var i = 0,innner,a = [];
+            for(; i<10;i++){
+                cache(i);            //如果直接把函数cache放在这里面的话 就只能访问到i的最终值10
+                                     // 这样写的话就可以访问到全部的变量了  闭包的一部分
+            }
+
+            function cache(i) {
+                a.push(function () {
+                    alert(i);
+                })
+            }
+        }
+
+        //--------------构造函数------------------
+        function Demo(name,age) {
+            this.name = name;       //这里的this很关键
+            this.age  = age;
+//            return [123,456];         //这是错误的   因为构造函数不能有返回值 他
+        }
+        var  d = new Demo("cj",18);
+        alert(d.name);
+        alert(d.age);
+
+        var c = Demo("VJ",19);            //不用new的时候 this指向的是window对象
+        alert(widows.name+"\n"+window.age);
+
+
+
+        //-------------继承------------------
+        //------------这里是无参数继承--------------
+        function DemoA() {
+            this.name = "CJ";
+        }
+        function DemoB() {  //要让DemoB继承DemoA
+                                                //构造函数A的prototype属性是一个对象
+                                            //这个对象具有的所有属性，A的实例也具有
+
+        }
+        DemoB.prototype = new DemoA;     //new DemoA  就相当于返回 {name:CJ}对象
+                                           // 这句代码一定要在下句代码的前面 不然就会出错  变成undefined
+                                         //这里千万不能写为new DemoA（），更加不能传参数 在特殊情况下可以  但是只能执行一次 也就是说只会实例一次
+                                            //就是只会传递参数给第一个DemoB   后面如果创建新的DemoB对象是不传递参数的
+        var d = new DemoB();
+        alert(d.name);
+
+        //---------------这里是有参数继承---------------
+        function DemoA(name,age) {
+            this.name = name;
+            this.age = age;
+        }
+        function DemoB(name,age) {  //要让DemoB继承DemoA
+            /*this.DemoA = DemoA;
+            this.DeemoA(name,age);*/
+            DemoA.call(this,name,age);     //简写的方式   就是为了可以参数继承
+        }
+        DemoB.prototype = new DemoA;
+        var d = new DemoB("cj",18);
+        alert(d.name);
+
+        var d2 = new DemoB("dghk",19);
+        alert(d2.name);
+
+        //------这里是为引出call的例子------
+        function fn(a,b) {
+            this.ver = 123;
+        }
+        var o = {};
+        fn.apply(o,[12,"b"])    //功能一样  只不过这里的参数是以数组传递的
+        fn.call(o,12,"b");        //call函数的一个方法，call（第一个参数为this指向的对象，。。。函数的参数）
+                                    //其实call的作用就是改变函数内this的指针
+        alert(o.ver);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

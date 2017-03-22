@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Shape(){}
+    Shape.prototype.name = 'shape';
+    Shape.prototype.toString = function(){return this.name;};
+
+    function TwoDShape(){}
+    TwoDShape.prototype = Shape.prototype;
+    TwoDShape.prototype.constructor = TwoDShape;
+    TwoDShape.prototype.name = '2D shape';
+
+    function Triangle(side,height){
+        this.side = side;
+        this.height = height;
+    }
+    Triangle.prototype = TwoDShape.prototype;
+    Triangle.prototype.constructor = Triangle;
+    Triangle.prototype.name = 'Triangle';
+    Triangle.prototype.getArea = function(){
+        return this.side * this.height/2;
+    };
+
+    var my = new Triangle(5,10);
+    my.getArea();         //输出  25
+    my.toString();        //输出  “Triangle”
+//！！！！！！！              这样简单地拷贝原型从效率上来说固然会更好一些，但也有它的副作用。
+//！！！！！！！        由于子对象与父对象指向的是同一个对象，所以一旦子对象对其原型进行了修改，父对象也会随即被
+//！！！！！！！        改变，甚至所有的继承关系都是如此。
+    var s = new Shape();
+    s.name;               //输出  “Triangle”
+</script>
+</body>
+</html>

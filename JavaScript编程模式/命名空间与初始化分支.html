@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //初始化分支，模块初始化时if分支必然会发生
+    //分支判断
+    var MYAPP = {};
+    MYAPP.event = {
+        addListener:null,
+        removeListener:null
+    };
+
+    if(typeof window.addEventListener() === 'function'){
+        MYAPP.event.addListener = function(el,type,fn){
+            el.addEventListener(type,fn,false);
+        };
+        MYAPP.event.removeListener = function(el,type,fn){
+            el.removeEventListener(type,fn,false);
+        };
+    }else if(typeof document.attachEvent === 'function'){    //IE
+        MYAPP.event.addListener = function (el,type,fn) {
+            el.attachEvent('on'+ type,fn);
+        };
+        MYAPP.event.removeListener = function (el,type,fn) {
+            el.detachEvent('on'+ type,fn);
+        };
+    }else{
+        MYAPP.event.addListener = function (el,type,fn) {   //older browsers
+            el['on'+ type] = fn;
+        };
+        MYAPP.event.removeListener = function (el, type,fn) {
+            el['on' + type] = null;
+        };
+    };
+
+
+</script>
+</body>
+</html>

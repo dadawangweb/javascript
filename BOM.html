@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        /*alert(window.screenLeft);   //IE  浏览器距离左边和顶部的距离 IE
+        alert(window.screenTop);*/
+
+        //alert(window.screenX+"\n"+window.screenY);   //Mozilla
+
+        alert(window.innerWidth+"\n"+window.innerHeight);    //获取浏览器当前页面的大小
+        alert(window.outerWidth+"\n"+window.outerHeight);    //浏览器当前整个窗口的大小（视口大小）
+
+        alert(screen.width);            //计算机屏幕的宽高  screen对象
+        alert(screen.height);
+
+        window.scrollTo(0,0);                              //对滚动条进行的操作
+        window.scrollBy(3,4);
+
+        //这里面的newwindow的作用是在同一个窗口里面打开网页，如果改成_blank 就会在新窗口里面打开  和a标签差不多
+        //_self
+        window.open("http://www.baidu.com","newwindow","height = 200,toolbar = 1");     //这个有可能被浏览器拦截采取的办法是
+        window.open("http://www.google.com","newwindow");     //这个有可能被浏览器拦截采取的办法是
+        window.open("http://www.taobao.com","newwindow");     //这个有可能被浏览器拦截采取的办法是
+        document.onclick = function () {    //这样就不会被拦截了，通过绑定一个事件，来触发他
+            window.open();
+        };
+
+        window.close();          //这里是对当前的window进行关闭 像下面说的一样是没有用的
+        //只有javascript打开的窗口才能被JS关闭 就是说类似window.open 打开这样的 这里是没有用的
+        //那该怎么办呢     其实open打开的时候室友一个返回值的  是一个对象   可以用这个对象调用其他的window方法来操作打开的窗口，
+        //出于安全性问题 open里不能是别人的网站  只能是本地的网页  因为别人的网站不可能给你去更改
+        var w = window.open("http://www.google.com","newwindow");
+        w.close();               //这样就能关闭open打开的窗口了
+
+        alert(confirm("yes or no?"));          //comfirm的返回值为true 或 false
+        window.status("12344");         //改变状态栏
+
+        alert(location.href);         //输出地址栏
+        location.reload(true);    //强制刷新
+        location.href = "www.baidu.com";    //就改变地址栏  使其访问百度咯
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

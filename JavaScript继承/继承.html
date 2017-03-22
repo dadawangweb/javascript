@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//-----------------------one part-----------------------
+//    function Person(first,last) {
+//        this.first = first;
+//        this.last = last;
+//    }
+//    Person.prototype = {
+//        fullName:function () {
+//            return this.first+''+this.last;
+//        },
+//        fullNameReversed:function () {
+//            return this.last+','+this.first;
+//        }
+//    };
+//
+//    function Student(first,last,id) {
+//        Person.call(this,first,last);
+//        this.id = id;
+//    }
+//    Student.prototype = new Person();
+//    Student.prototype.getid = function () {
+//        return this.id;
+//    }
+//
+//    var dingwang = new Student("ding","wang","21");
+//    alert(dingwang.fullName());
+//    alert(dingwang.getid());
+
+//----------two part-----------------------
+//    function C1(name){
+//        if(name) this.name = name;
+//    }
+//
+//    function C2(name){
+//        this.name = name;
+//    }
+//
+//    function C3(name){
+//        this.name = name || "John";
+//    }
+//
+//    C1.prototype.name = 'Tom';
+//    C2.prototype.name = 'Tom';
+//    C3.prototype.name = 'Tom';
+//
+//    console.log((new C1().name)+ (new C2().name) + (new C3().name));
+
+//-----------three------------------------------
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Shape(){}
+    Shape.prototype.name = 'shape';
+    Shape.prototype.toString = function () {
+        return this.name;
+    };
+
+    function TwoDShape(){}
+    var F = function () {};
+    F.prototype = Shape.prototype;
+    TwoDShape.prototype = new F();
+    TwoDShape.prototype.constructor = TwoDShape;
+    TwoDShape.prototype.name = '2D shape';
+
+    function Triangle(side,height) {
+        this.side = side;
+        this.height = height;
+    }
+    var F = function(){};
+    F.prototype = TwoDShape.prototype;
+    Triangle.prototype = new F();
+    Triangle.prototype.constructor = Triangle;
+    Triangle.prototype.name = 'Triangle';
+    Triangle.prototype.getArea = function () {
+        return this.side * this.height/2;
+    };
+    var my = new Triangle(5,10);
+    my.getArea();       //输出 25
+    my.toString();      //输出 "Triangle"
+//!!!!!!!      通过这种方法，我们就可以在保持原型链的基础上使父对象的属性摆脱子对象的影响了：
+    my.__proto__.__proto__.__proto__.constructor;       //输出 Shape()
+    var s = new Shape();
+    s.name;                                              //输出 “shape”
+</script>
+</body>
+</html>

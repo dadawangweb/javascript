@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Animal(name){
+        this.name = name;
+        this.showName = function(){
+            alert(this.name);
+        }
+    }
+
+    function Cat(name){
+        Animal.call(this, name);
+    }
+
+    var cat = new Cat("Black Cat");
+    cat.showName();
+</script>
+</body>
+</html>

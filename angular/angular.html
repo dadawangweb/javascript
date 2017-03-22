@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery-2.2.3.min.js"></script>
+    <script src="../js/angular.min.js"></script>
+</head>
+<body>
+<!--<div ng-app="myApp" ng-controller="myCtrl">-->
+
+    <!--名: <input type="text" ng-model="firstName"><br>-->
+    <!--姓: <input type="text" ng-model="lastName"><br>-->
+    <!--<br>-->
+    <!--姓名: {{firstName + " " + lastName}}-->
+    <!--<span>{{test}}</span>-->
+<!--</div>-->
+
+<!--<div data-ng-app = "" data-ng-init = "names = ['Jani','Hege','Kai']">-->
+    <!--<p>使用 ng-repeat 来循环数组</p>-->
+    <!--<ul>-->
+        <!--<li data-ng-repeat = "x in names">-->
+            <!--{{ x }}-->
+        <!--</li>-->
+    <!--</ul>-->
+<!--</div>-->
+
+<!--<div ng-app = "myApp">-->
+    <!--<runoob-directive></runoob-directive>-->
+<!--</div>-->
+<!--<script>-->
+    <!--var app = angular.module("myApp",[]);-->
+    <!--app.directive("runoobDirective",function () {-->
+        <!--return{-->
+            <!--template:"<h1>很烦很嚣张！<h1>"-->
+        <!--};-->
+    <!--})-->
+<!--</script>-->
+<div ng-app="myApp" ng-controller ="myCtrl">
+    <select ng-model ="selectedName" ng-options = "x for x in names"></select>
+</div>
+<script>
+//    var app = angular.module('myApp', []);
+//    app.controller('myCtrl', function($scope) {
+//        $scope.firstName= "John";
+//        $scope.lastName= "Doe";
+//        $scope.test = "OK";
+//    });
+    var app = angular.module('myApp',[]);
+    app.controller('myCtrl',function ($scope) {
+        $scope.names = ["google","Runoob","Taobao"];
+    })
+
+</script>
+</body>
+</html>

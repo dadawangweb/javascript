@@ -1,0 +1,55 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+#regForm{
+    width: 100%;
+}
+#regForm h3{
+    width: 100px;
+    margin: 0px auto;
+    padding: 10px;
+}
+#regForm fieldset{
+    width: 65%;
+    height: 500px;
+    margin: 0px auto;
+}
+#regForm fieldset label{
+    padding-left: 20px;
+    display: block;
+    margin: 10px;
+}
+#regForm fieldset label strong{
+    display: none;
+}
+#regForm fieldset label em{
+    display: none;
+}
+#regForm fieldset p{
+    padding-left: 20px;
+    margin: 10px;
+}
+#regForm fieldset p label{
+   display: inline;
+}
+textarea{
+    width: 400px;
+    height: 150px;
+    vertical-align: top;
+}
+span{
+    line-height: 25px;
+    width: 30px;
+    height: 20px;
+    background-image: url("img/luntuanzhuce.jpg");
+    background-size: 100%;
+}
+em{
+    border: 1px solid orange;
+    background-color: antiquewhite;
+}
+strong{
+    border: 1px solid orange;
+    background-color: antiquewhite;
+}

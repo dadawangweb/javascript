@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+            background-color: deeppink;
+            border: 3px ridge aqua;
+            overflow: scroll;
+            position: relative;
+            top: 200px;
+            left: 200px;
+        }
+        #div2{
+            overflow: auto;
+            width: 200px;
+            height: 200px;
+            background-color: #00FFFF;
+        }
+
+    </style>
+    <script type="text/javascript">
+            function addEvent( obj, type, fn ) {
+                if ( obj.attachEvent ) {
+                    obj['e'+type+fn] = fn;
+                    obj[type+fn] = function(){obj['e'+type+fn]( window.event );}
+                    obj.attachEvent( 'on'+type, obj[type+fn] );
+                } else
+                    obj.addEventListener( type, fn, false );
+            }
+            function removeEvent( obj, type, fn ) {
+                if ( obj.detachEvent ) {
+                    obj.detachEvent( 'on'+type, obj[type+fn] );
+                    obj[type+fn] = null;
+                } else
+                    obj.removeEventListener( type, fn, false );
+            }
+
+//        这个函数是获取元素的真实大小  就是元素的width 和height 不会把padding包含进去  他还做了浏览器兼容性解决 这个函数是W3C里面的
+            function getRaalStyle(obj,s) {
+                var style;
+                if(window.getComputedStyle){//w3c DOM
+                    style = window.getComputedStyle(obj,null);
+                }else if(obj.currentStyle){  // IE
+                    style = obj.currentStyle;
+                }
+                return style[s];
+            }
+
+
+            window.onload=function () {
+                //----------------下面是针对设置了width和height的块级元素才可以使用的
+                var div1 = document.getElementById("div1");
+                var div2 = document.getElementById("div2");
+                var p = div2.getElementsByTagName("p");
+//                var w = getRaalStyle(div1,'width');
+//                    h = getRaalStyle(div1,'height');
+
+                var w = div1.clientWidth,          //这两个属性可以获取可视宽度和高度  会包括padding  但当元素有滚动条的时候就不会算滚动条的宽度和高度
+                        h = div1.clientHeight;
+
+                var sw = div1.scrollWidth,           //当加了滚动条之后 里面实际内容的大小 他们只能返回使用行内style属性定义的元素上面
+                        sh = div1.scrollHeight;
+//                alert(sw+"\n"+sh);
+
+                var ow = div1.offsetWidth,          //这个会把 padding  border 算进去 当有滚动条时会把滚动条算进去
+                        oh = div1.offsetHeight;
+
+//                alert(w+"\n"+h);
+//                alert(div1.style.width+"\n"+div1.style.height);  //这个返回空值  因为他不能用于块级元素里面  只能用于行内元素里面
+//                alert(p[0].innerText);
+//                alert(div1.innerText);
+
+                //-----------------------窗口视口的宽度和高度-------------------
+//                视口指显示页面的那部分的大小Mozilla提供了window.innerWidth与window.innerHeight两个属性，而IE则没有相对应的属性
+//                但可以使用document.documentElement.clientWidth与document.documentElement.clientHeight两个属性来获取！另外，对于IE6
+//                之前的版本，则需要使用document.bodyd的clientWidth和clientHeight
+                //获取视口大小，依次为火狐，IE6及IE6以上的版本，IE6以下的版本（不过这类几乎不存在了）
+                var vw = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+                var vh = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+                //其实火狐也是支持document.documentElement.clientWidth的  所以根本不用做检测
+                var nvw = document.documentElement.clientWidth;
+                var nvh = document.documentElement.clientHeight;
+                var size = innerSize();
+//                alert(size.width+"\n"+size.height);
+
+                //自己把他们写在一个函数内  返回值为一个对象
+                function innerSize() {
+                    return {    //这里不能换行   javascript语法问题
+                        width:window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
+                        height:window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+                    };
+                }
+
+                //------------------border 的大小-------------------
+                var bw = div1.clientLeft;
+                var bh = div1.clientTop;
+//                alert(bw+" "+bh);
+
+                //-------------------获取元素的坐标-----------
+                var x = div1.offsetLeft,
+                        y = div1.offsetTop;
+//                alert(x+"\n"+y);
+
+                //----------对于有滚动条的页面 计算滚动条滚动了多少距离---------
+                var de = document.documentElement;
+//                alert(de.scrollLeft+"\n"+de.scrollTop);
+
+                //--------Event对象与定位相关的属性---------------------
+
+                addEvent(div1,'click',function (evt) {
+                    alert(evt.clientX+"\n"+evt.clientY);
+                });
+            }
+
+
+    </script>
+</head>
+<body>
+    <div id="div1">
+        djajghadnlfknaskfjlasjdgsagjajgaolsg
+        dgaoghalskdjhngoasfjasdkljnmfg;asg
+        dgalgjaioerjgakrgidsjgkdddddddddddddddddddddddd
+        dddddddddddddddddddddddddddddddd
+        ddddddddddddddddddddddddddddddddd
+        ddddddddddddddddddddddddddddd
+        ddddddddddddddddddddddddddd
+    </div>
+    <div id="div2">
+        <p>daghdnkajgiodugopagujajmerlgjodnglaugerig</p>
+    </div>
+</body>
+</html>

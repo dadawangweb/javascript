@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <title>Title</title>
+</head>
+<body>
+    <div style="width: 50px;height: 50px;background-color: tan" class="page">test</div>
+</body>
+<script>
+    jQuery(function ($) {
+        $(document).on('mousemove','.page',function (event) {
+            var pageX = event.pageX;
+            var pageY = event.pageY;
+            var clientX = event.clientX;
+            var clientY = event.clientY;
+            var screenX = event.screenX;
+            var screenY = event.screenY;
+            var offsetX = event.offsetX;
+            var offsetY = event.offsetY;
+            alert("pageX:"+pageX+" pageY:"+pageY+"\n"+"clientX:"+clientX+"clientY:"+clientY+"\n"+"screenX:"+screenX+"screenY:"+screenY+"\n"+"offsetX:"+offsetX+"offsetY:"+offsetY);
+        });
+    });
+</script>
+</html>

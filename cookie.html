@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        document.cookie="cookieName = cookieValue;";
+        document.cookie=" cookieName2 = cookieValue2";
+        document.cookie=" a2 = "+encodeURIComponent("cookieValue3;");   //就类似加密   解密decodeURIComponent
+        document.cookie=" a3 = "+encodeURI("cookieValue4");
+        //cookieName = cookieValue;   a2 = cookieValue3;；   a3 = cookieValue4;
+        alert(document.cookie);
+
+        //取cookie特定cookie的值
+        function getCookie(cookieName) {                                      //这里其实就是我们之前使用函数的源码，若要真正去使用cookie
+            var start = document.cookie.indexOf(cookieName+"=");           //可以去看cookie的文档 其实html5已经把这些函数封装好了  直接可以调用
+            if(start == -1){return "";}
+            start = start+cookieName.length+1;
+            var end = document.cookie.indexOf(";",start);
+            if(-1==end){end = document.cookie.length;}
+            return decodeURIComponent(document.cookie.substring(start,end));
+        }
+        alert(getCookie('a2'));
+
+        //一个完整的cookie
+        var expires = new Date();
+        expires.setMonth(expires.getMonth()+1);  //一个月后Cookie失效
+        document.cookie = "username="+encodeURI("用户名")+";expires ="+
+                        expires.toGMTString()+";path = /;domain=x-life.com;secure";
+    </script>
+</head>
+<body>
+
+</body>
+</html>

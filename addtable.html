@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+<div class="tabletest">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>记录单号</th>
+            <th>归属国家</th>
+            <th>覆盖国家</th>
+            <th>运营商</th>
+            <th>卡数</th>
+            <th>卡流量（GB）</th>
+            <th>负责人</th>
+            <th>状态</th>
+            <th style="min-width: 60px">最后编辑</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+    </table>
+    <div class="select" style="width: 200px">
+        <select class="form-control country_cover" name="country_cover">
+            <option value="">请选择</option>
+        </select>
+    </div>
+</div>
+<script src="js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript">
+    jQuery(function ($) {
+//---------------------ajax---------------------------------------------
+        //        $.ajax({
+//            type: "POST",
+//            url: "test.php",
+//            dataType: "JSON",
+//            success:function (txy) {
+//                var data = eval ("(" + txt + ")");
+//            }
+//        });
+// -------------------------------table-----------------------------------
+        var json = {
+            tr: [{
+                id_data: "5",
+                role: "row",
+                td: [
+                    {
+                        value: "P20160615GB_006"
+                    },
+                    {
+                        value: "AD"
+                    },
+                    {
+                        value: "AD"
+                    },
+                    {
+                        value: "2DEGREE"
+                    },
+                    {
+                        value: "50"
+                    },
+                    {
+                        value: "5.00"
+                    },
+                    {
+                        value: "丁洁"
+                    },
+                    {
+                        value: "计划采购"
+                    },
+                    {
+                        value: "10 天前"
+                    },
+                    {
+                        class: "operating",
+                    }
+                ]
+            },
+                {
+                    id_data: "7",
+                    role: "row",
+                    td: [
+                        {
+                            value: "P20160615FR_006"
+                        },
+                        {
+                            value: "FR"
+                        },
+                        {
+                            value: "FR"
+                        },
+                        {
+                            value: "2DEGREE"
+                        },
+                        {
+                            value: "40"
+                        },
+                        {
+                            value: "3.00"
+                        },
+                        {
+                            value: "丁洁"
+                        },
+                        {
+                            value: "计划采购"
+                        },
+                        {
+                            value: "10 天前"
+                        },
+
+                    ]
+                }
+            ],
+        };
+
+
+        function gettabledata(data) {
+            var trlength = data.tr.length;
+            for (var i = 0; i < trlength; i++) {
+                $("table").append("<tr class='tr_data' id_data = '" + data.tr[i].id_data + "' role = 'row'>" +
+                        "<td class='td_purchase_no'><a target='_blank' href='/CardPurchaseProcesses/view/" + data.tr[i].id_data + "'><span class='not_edit'>" + data.tr[i].td[0].value + "</span></a></td>" +
+                        "<td class='td_country_code'><span class='not_edit'>" + data.tr[i].td[1].value + "</span><select name='country_code ' class='country_code  edit'><option selected = 'selected' value='" + data.tr[i].td[1].value + "'></option></select></td>" +
+                        "<td class='td_country_cover'><span class='not_edit'>" + data.tr[i].td[2].value + "</span><select name='country_cover' class='country_cover edit'><option selected = 'selected' value='" + data.tr[i].td[2].value + "'></option></select></td>" +
+                        "<td class='td_operator_id'><span class='not_edit'>" + data.tr[i].td[3].value + "</span><select name ='operator_id' class='operator_id edit'><option selected = 'selected' value='" + data.tr[i].td[3].value + "'></option></select></td>" +
+                        "<td class='td_card_quantity'><span class='not_edit'><span class='not_eidt'>" + data.tr[i].td[4].value + "</span><input class='card_quantity edit' value='" + data.tr[i].td[4].value + "' type='text'></td>" +
+                        "<td class='td_card_dataquota'><span class='not_edit'><span class='not_eidt'>" + data.tr[i].td[5].value + "</span><input class='card_quantity edit' value='" + data.tr[i].td[5].value + "' type='text'></td>" +
+                        "<td class='td_supporter_id'><span class='not_edit'>" + data.tr[i].td[6].value + "</span><select name ='supporter_id' class='supporter_id edit'><option selected = 'selected' value='" + data.tr[i].td[6].value + "'></option></select></td>" +
+                        "<td class='td_process_state'><span class='not_edit plan_state' value='1'>" + data.tr[i].td[7].value + "</span></td>" +
+                        "<td class='td_modified'><span class='not_edit'>" + data.tr[i].td[8].value + "</span></td>" +
+                        "<td class='operating'><img class = 'save_data' title='保存' style='display:none; ' src='images/save.png'>" +
+                        "<a href='/CardPurchaseProcesses/edit/" + data.tr[i].id_data + "' target='_blank'><img class='edit_data' title = '编辑' src = 'images/bianji.png'></a>" +
+                        "<img class = 'delete_data' title='删除'  src='images/delet.png'>" +
+                        "<img class = 'copy_data' title='复制'  src='images/piliang.png'></td></tr>")
+            }
+        };
+        gettabledata(json);
+
+//--------------------------------select---------------------------------
+        var select = [
+            {
+                val: "AD",
+                country: "AD-Andorra"
+            },
+            {
+                val: "AE",
+                country: "AE-United Arab Emirates"
+            },
+            {
+                var: "AF",
+                country: "AF-Afghanistan"
+            }
+        ];
+        (function choose() {
+            var length = select.length;
+            //alert(length);
+            for (var n = 0; n < length; n++) {
+                $(".country_cover").append("<option value = '" + select[n].val + "'>" + select[n].country + "</option>");
+            }
+        })();
+
+//end
+    });
+</script>
+</body>
+</html>

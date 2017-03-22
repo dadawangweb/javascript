@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <script src="js/echarts.min.js"></script>
+</head>
+<body>
+    <div id="main" style="width: 600px;height: 400px">
+    </div>
+    <!--柱状图-->
+
+        <!--<script type="text/javascript">-->
+            <!--//给予准备好的dom，初始化echarts实例-->
+            <!--var myChart = echarts.init(document.getElementById('main'));-->
+
+            <!--//指定图标的配置项和数据-->
+            <!--var option = {-->
+                <!--title:{-->
+                    <!--text:'EChart 入门示例'-->
+                <!--},-->
+                <!--tooltip:{},-->
+                <!--legend:{-->
+                     <!--data:['销量']-->
+                <!--},-->
+                <!--xAxis:{     //水平坐标显示-->
+                    <!--data:["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]-->
+                <!--},-->
+                <!--yAxis:{},  //垂直坐标-->
+                <!--series:[{      //整个柱子  和 提示-->
+                    <!--name:"销量",    //提示-->
+                    <!--type:"bar",-->
+                    <!--data:[5,20,36,10,10,20]-->
+                <!--}]-->
+            <!--};-->
+
+            <!--//使用刚指定的配置下项和数据显示图标。-->
+            <!--myChart.setOption(option);-->
+        <!--</script>-->
+
+
+      <!--南丁格尔图-->
+
+    <script type="text/javascript">
+        var myCharts = echarts.init(document.getElementById('main'));
+        var option = {
+            itemStyle: {                //ECharts 中有一些通用的样式，诸如阴影、透明度、颜色、边框颜色、边框宽度等，这些样式一般都会在系列的 itemStyle 里设置
+//                normal: {
+//                    // 阴影的大小
+//                    shadowBlur: 200,
+//                    // 阴影水平方向上的偏移
+//                    shadowOffsetX: 0,
+//                    // 阴影垂直方向上的偏移
+//                    shadowOffsetY: 0,
+//                    // 阴影颜色
+//                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+//                },
+                emphasis: {             //itemStyle都会有normal和emphasis两个选项，normal选项是正常展示下的样式，emphasis是鼠标 hover 时候的高亮样式。
+                    shadowBlur: 200,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+
+
+
+            series:[
+                {
+                    name:'访问来源',
+                    roseType: 'angle',    //加这个显示成南丁格尔图
+                    type:'pie',
+
+                    radius:'55%',    //整个div的比例吧
+                    data:[
+                        {value:400,name:"搜索引擎"},
+                        {value:335,name:"直接访问"},
+                        {value:310,name:"邮件营销"},
+                        {value:274, name:'联盟广告'},
+                        {value:235, name:'视频广告'}
+                    ]
+                }
+            ]
+        }
+        myCharts.setOption(option);
+        myCharts.setOption({
+            backgroundColor: '#2c343c'
+        });
+    </script>
+</body>
+</html>

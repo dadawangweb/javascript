@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var s = ("恭喜本次中奖的观众 小丁 中了大奖  草你的吗BB  I'LL FUCK YOU ").split("");
+        setInterval(function () {
+            s.push(s.shift());
+            document.getElementById("text").innerHTML = s.join(" ");
+        },500);
+    </script>
+    <style>
+        #text{
+            background-color: darksalmon;
+            width: 50%;
+            position: relative;
+            left: 350px;
+        }
+    </style>
+</head>
+<body>
+    <div id="text">
+
+    </div>
+
+</body>
+</html>

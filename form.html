@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload = function () {
+            var fm = document.fm;
+            alert(fm);
+            alert(document.forms.length);
+            alert(document.forms[1]);
+            var t = fm.textInput;        //访问表单中的input
+            alert(t.value);
+            t.value = "ddfag";
+            alert(t);
+
+            fm.onsubmit = function () {          //这个事件就是在一个表单中当点击提交按钮之后所做的事情
+                alert(this);     //form对象
+                alert(fm.gender[0].checked);   //检查单选被选中了那一个 这个判断是不是选中了西瓜
+                alert(fm.gender[1].checked);   //检查单选被选中了那一个 这个判断是不是选中了苹果 如果是返回true 否则false
+                alert(fm.gender[0].defaultChecked); //判断是不是默认选中
+
+              for (var i = 0;i < this.elements.length;i++){    //输出form的所有元素节点的值
+                  alert(this.elements[i].value);
+              }
+
+                var fmm = document.fm;
+                var sel = fm.city;
+                var c = sel.selectedIndex; //被选中option的下标  selectedIndex属性  和上面的checked属性是一样的
+                var opt = sel.options[c];
+                opt.text;
+                opt.value;
+
+                var optt = new Option("新增选项文本","选项值");      //为下拉列表新增一个选择
+                sel.add(optt,sel.options[1]);
+            };
+        };
+    </script>
+</head>
+<body>
+    <h1>form 表单</h1>
+    <form name="fm">
+        <input name = "textInput" type="text" value="文本框">
+
+        <select name="city">                                                   //下拉选择器
+            <option value="A">盐城</option>
+            <option value="B">北京</option>
+            <option value="C">湖南</option>
+        </select>
+
+        <input type="radio" name="gender" value="西瓜">     //单选按钮radio 名字相同  值不同
+        <input type="radio" name="gender" value="苹果">
+        <input type="radio" name="gender" value="香蕉">
+
+        <input type="checkbox" name="category" value="财经">   //复选框checkbox 名字相同 值不同 也具有checked属性
+        <input type="checkbox" name="category" value="汽车">
+        <input type="checkbox" name="category" value="汽车科技">
+
+        <input type="button" name="提交">
+    </form>
+    <form>
+
+    </form>
+</body>
+</html>

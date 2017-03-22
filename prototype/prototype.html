@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Person(first,last) {
+        this.first = first;
+        this.last = last;
+    };
+    Person.prototype = {
+        fullName:function () {
+            return this.last+'.'+this.first;
+        }
+    };
+
+    function Student(first,last,id) {
+        Person.call(this,first,last);     //call是function才有的    所以Person.prototype.call(this,first,last); 是不行的  也就是说call不能指向Person 的 prototype
+        this.id = id;
+    };
+    Student.prototype = new Person();
+//    Student.prototype = {
+//       getid:function () {
+//           return this.id;
+//       }
+//    };    //如果这样写就会有问题
+    Student.prototype.getid = function () {
+        return this.id;
+    };
+
+    var dinwan = new Student("din","wan","21");
+    alert(dinwan.fullName());
+    alert(dinwan.getid());
+</script>
+</body>
+</html>

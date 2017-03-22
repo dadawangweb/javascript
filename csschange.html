@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        function addClass(obj,className) {            //差不多就是jquery的源码了
+            obj.className+= ""+className;
+            return obj;
+        }
+        function delClass(obj,className) {
+            var s = obj.className.split(/\s+/);
+            for(var i = 0; i<s.length;i++){
+                if(s[i]==className) delete  s[i];
+            }
+            obj.className= s.join(" ");
+            return obj;
+        }
+    </script>
+</body>
+</html>

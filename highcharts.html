@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <script src="js/highcharts.js"></script>
+    <script src="js/exporting.js"></script>
+</head>
+<body>
+    <div id="container" style="min-width: 400px;height: 400px">
+
+    </div>
+    <script>
+        $(function () {
+            Highcharts.setOptions({
+                timezoneOffset: +8
+            });
+            $.getJSON('http://datas.org.cn/jsonp?filename=json/usdeur.json&callback=?', function (data) {
+                $('#container').highcharts({
+                    chart: {
+                        zoomType: 'x'
+                    },
+                    title: {
+                        text: '美元兑欧元汇率走势图'
+                    },
+                    subtitle: {
+                        text: document.ontouchstart === undefined ?
+                                '鼠标拖动可以进行缩放' : '手势操作进行缩放'
+                    },
+                    xAxis: {
+                        type: 'datetime',
+                        dateTimeLabelFormats: {
+                            millisecond: '%H:%M:%S.%L',
+                            second: '%H:%M:%S',
+                            minute: '%H:%M',
+                            hour: '%H:%M',
+                            day: '%m-%d',
+                            week: '%m-%d',
+                            month: '%Y-%m',
+                            year: '%Y'
+
+                        }
+                    },
+                    tooltip: {
+                        share:true
+                    },
+                    yAxis:  [{ // Primary yAxis
+                        labels: {
+                            format: '{value} °C',
+                            style: {
+                                color: Highcharts.getOptions().colors[0]
+                            }
+                        },
+                        title: {
+                            text: 'Exchange rate',
+                            style: {
+                                color: Highcharts.getOptions().colors[0]
+                            }
+                        }
+                    }, { // Secondary yAxis
+                        title: {
+                            text: 'Rainfall',
+                            style: {
+                                color: Highcharts.getOptions().colors[1]
+                            }
+                        },
+                        labels: {
+                            format: '{value} mm',
+                            style: {
+                                color: Highcharts.getOptions().colors[1]
+                            }
+                        },
+                        opposite: true
+                    },{ // Secondary yAxis
+                        title: {
+                            text: 'test',
+                            style: {
+                                color: Highcharts.getOptions().colors[2]
+                            }
+                        },
+                        labels: {
+                            format: '{value} test ',
+                            style: {
+                                color: Highcharts.getOptions().colors[2]
+                            }
+                        },
+                        opposite: true
+                    }],
+                    legend: {
+//                        enabled: false
+                        legend: {
+                            layout: 'vertical',
+                            align: 'left',
+                            x: 120,
+                            verticalAlign: 'top',
+                            y: 100,
+                            floating: true,
+                            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+                        },
+                    },
+                    plotOptions: {
+                        area: {
+                            fillColor: {
+                                linearGradient: {
+                                    x1: 0,
+                                    y1: 0,
+                                    x2: 0,
+                                    y2: 1
+                                },
+                                stops: [
+                                    [0, Highcharts.getOptions().colors[0]],
+                                    [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                                ]
+                            },
+                            marker: {
+                                radius: 2
+                            },
+                            lineWidth: 1,
+                            states: {
+                                hover: {
+                                    lineWidth: 1
+                                }
+                            },
+                            threshold: null
+                        },
+                        spline: {
+                            marker: {
+                                enabled: true
+                            }
+                        }
+                    },
+                    series: [{
+                        type: 'area',
+                        name: '美元兑欧元',
+                        data:  [
+                            [Date.UTC(1970,  9, 27), 8   ],
+                            [Date.UTC(1970, 10, 10), 0.6 ],
+                            [Date.UTC(1970, 10, 18), 0.7 ],
+                            [Date.UTC(1970, 11,  2), 0.8 ],
+                            [Date.UTC(1970, 11,  9), 0.6 ],
+                            [Date.UTC(1970, 11, 16), 0.6 ],
+                            [Date.UTC(1970, 11, 28), 0.67],
+                            [Date.UTC(1971,  0,  1), 0.81],
+                            [Date.UTC(1971,  0,  8), 0.78],
+                            [Date.UTC(1971,  0, 12), 0.98],
+                            [Date.UTC(1971,  0, 27), 1.84],
+                            [Date.UTC(1971,  1, 10), 1.80],
+                            [Date.UTC(1971,  1, 18), 1.80],
+                            [Date.UTC(1971,  1, 24), 1.92],
+                            [Date.UTC(1971,  2,  4), 2.49],
+                            [Date.UTC(1971,  2, 11), 2.79],
+                            [Date.UTC(1971,  2, 15), 2.73],
+                            [Date.UTC(1971,  2, 25), 2.61],
+                            [Date.UTC(1971,  3,  2), 2.76],
+                            [Date.UTC(1971,  3,  6), 2.82],
+                            [Date.UTC(1971,  3, 13), 2.8 ],
+                            [Date.UTC(1971,  4,  3), 2.1 ],
+                            [Date.UTC(1971,  4, 26), 1.1 ],
+                            [Date.UTC(1971,  5,  9), 0.25],
+                            [Date.UTC(1971,  5, 12), 0   ]
+                        ],
+                        tooltip:{
+                            dateTimeLabelFormats: {
+                                millisecond: '%H:%M:%S.%L',
+                                second: '%H:%M:%S',
+                                minute: '%H:%M',
+                                hour: '%H:%M',
+                                day: '%Y-%m-%d',
+                                week: '%m-%d',
+                                month: '%Y-%m',
+                                year: '%Y'
+                            }
+                        }
+                    }, {
+                            name: 'Temperature',
+                            type: 'spline',
+                            yAxis: 1,
+
+                            data: [
+                                [Date.UTC(1970,  9, 27), 1   ],
+                                [Date.UTC(1970, 10, 10), 0.6 ],
+                                [Date.UTC(1970, 10, 18), 0.7 ],
+                                [Date.UTC(1970, 11,  2), 0.8 ],
+                                [Date.UTC(1970, 11,  9), 0.6 ],
+                                [Date.UTC(1970, 11, 16), 0.6 ],
+                                [Date.UTC(1970, 11, 28), 0.67],
+                                [Date.UTC(1971,  0,  1), 0.81],
+                                [Date.UTC(1971,  0,  8), 0.78],
+                                [Date.UTC(1971,  0, 12), 0.98],
+                                [Date.UTC(1971,  0, 27), 1.84],
+                                [Date.UTC(1971,  1, 10), 1.80],
+                                [Date.UTC(1971,  1, 18), 1.80],
+                                [Date.UTC(1971,  1, 24), 1.92],
+                                [Date.UTC(1971,  2,  4), 2.49],
+                                [Date.UTC(1971,  2, 11), 2.79],
+                                [Date.UTC(1971,  2, 15), 2.73],
+                                [Date.UTC(1971,  2, 25), 2.61],
+                                [Date.UTC(1971,  3,  2), 2.76],
+                                [Date.UTC(1971,  3,  6), 2.82],
+                                [Date.UTC(1971,  3, 13), 2.8 ],
+                                [Date.UTC(1971,  4,  3), 2.1 ],
+                                [Date.UTC(1971,  4, 26), 1.1 ],
+                                [Date.UTC(1971,  5,  9), 0.25],
+                                [Date.UTC(1971,  5, 12), 0   ]
+                            ],
+                            tooltip:{
+                                valueSuffix: '°C'
+                            }
+                    }, {
+                        name: 'test',
+                        type: 'spline',
+                        yAxis:2,
+                        data: [
+                            [Date.UTC(1970,  9, 27), 2   ],
+                            [Date.UTC(1970, 10, 10), 0.7 ],
+                            [Date.UTC(1970, 10, 18), 0.8 ],
+                            [Date.UTC(1970, 11,  2), 0.6 ],
+                            [Date.UTC(1970, 11,  9), 0.3 ],
+                            [Date.UTC(1970, 11, 16), 0.4 ],
+                            [Date.UTC(1970, 11, 28), 0.66],
+                            [Date.UTC(1971,  0,  1), 0.83],
+                            [Date.UTC(1971,  0,  8), 0.77],
+                            [Date.UTC(1971,  0, 12), 0.97],
+                            [Date.UTC(1971,  0, 27), 1.83],
+                            [Date.UTC(1971,  1, 10), 1.80],
+                            [Date.UTC(1971,  1, 18), 1.80],
+                            [Date.UTC(1971,  1, 24), 1.91],
+                            [Date.UTC(1971,  2,  4), 2.5],
+                            [Date.UTC(1971,  2, 11), 2.69],
+                            [Date.UTC(1971,  2, 15), 2.83],
+                            [Date.UTC(1971,  2, 25), 2.51],
+                            [Date.UTC(1971,  3,  2), 2.06],
+                            [Date.UTC(1971,  3,  6), 2.72],
+                            [Date.UTC(1971,  3, 13), 2.0 ],
+                            [Date.UTC(1971,  4,  3), 2.1 ],
+                            [Date.UTC(1971,  4, 26), 1.4 ],
+                            [Date.UTC(1971,  5,  9), 0.15],
+                            [Date.UTC(1971,  5, 12), 1 ]
+                        ],
+                        tooltip:{
+                            valueSuffix: 'test '
+                        }
+                    }]
+                });
+            });
+        });
+
+    </script>
+</body>
+</html>

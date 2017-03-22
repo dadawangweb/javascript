@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        try{
+//            var abc = {};         //这里存放可能出现错误的代码
+//            d;  //error
+            var err = new Error("An Error!!!");
+            throw err;                  //这里抛出一个err对象   就会被catch捕获到这个err对象 catch里面的e就是err对象  所以 catch里面那个e是必写的
+        }catch (e){
+            //这里存放错误执行后 应该要执行的代码  根据不同的错误类型
+            alert(e);   //这里会弹出错误信息  不同的错误会弹出不同的错误信息  例如not a function /  undefined
+
+        }finally {
+            //不管有没有错误发生，都始终执行
+            abc.attr = 66;
+        }
+
+
+        //额外的东西  把一个网址收藏到我的收藏夹中
+        var address = "http://www.baidu.com";
+        var  name = "我的收藏夹";
+        window.external.addFavorite(address,name);     //IE
+        window.sidebar.addPanel(name,address,"") ;         //火狐浏览器
+
+        //对象检测兼容性测试  发现出错了 火狐上可以 IE上不可以  这是IE自身实现上的问题在 怎么办呢  try catch就发挥作用了
+        function addFavorite(address,name) {
+            if(window.external && window.external.addFavorite){
+                window.external.addFavorite(address,name);
+            }else if(window.sidebar && window.sidebar.addPanel){
+                window.sidebar.addPanel(name,address,"")
+            }
+        }
+
+        //------try catch 实现上述兼容性----------
+        try{
+            window.external.addFavorite(address,name);
+        }catch (e){
+            try {
+                window.sidebar.addPanel(name,address,"") ;
+            }catch(e){}
+        }
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

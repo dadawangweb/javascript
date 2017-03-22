@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Shape(){
+        this.name = 'shape';
+        this.toString = function(){
+            return this.name;
+        };
+    }
+    Shape.prototype.firstname = "ding";
+    function TwoDShape(){
+        this.name = '2D shape';
+    }
+    function Triangle(side,height){
+        this.name = 'Triangle';
+        this.side = side;
+        this.height = height;
+        this.getArea = function(){
+            return this.side * this.height
+        };
+    }
+    TwoDShape.prototype = new Shape();
+    Triangle.prototype = new TwoDShape();
+    TwoDShape.prototype.constructor = TwoDShape;       //必须  消除原型链的陷阱
+    Triangle.prototype.constructor = Triangle;           //必须  消除原型链的陷阱
+
+    var my = new Triangle(5,10);
+    my.getArea();             //25
+    my.toString();            //"Triangle"
+    my.firstname;           //"ding"
+
+    var s = new Shape();
+    s.name;                 //"shape"
+
+    console.log(my instanceof Shape);   //true           //实例
+    console.log(my instanceof TwoDShape);   //true
+    console.log(my instanceof Triangle);    //true
+
+    console.log(Shape.prototype.isPrototypeOf(my));  //true
+    console.log(TwoDShape.prototype.isPrototypeOf(my));  //true
+    console.log(Triangle.prototype.isPrototypeOf(my));  //true
+
+</script>
+</body>
+</html>
