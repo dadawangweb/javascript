@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Swiper demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="../css/swiper.min.css">
+
+    <!-- Demo styles -->
+    <style>
+        html, body {
+            position: relative;
+            height: 100%;
+        }
+        body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color:#000;
+            margin: 0;
+            padding: 0;
+        }
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+
+        /*begin*/
+        *{margin:0;padding:0;list-style-type:none;}
+        a,img{border:0;}
+        body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";}
+        .demo{margin:60px auto;width:750px;}
+
+        .navbox{float:left;margin-right: 50px;}
+        ul.nav{width:200px;padding:60px 0 60px 0;background:url(../img/shad2.png) no-repeat;}
+        ul.nav li{margin:7px 0 0 0;height: 80px;}
+        ul.nav li a{ height: 50px;text-align:center;font-size:18px;border-radius: 8px;opacity:0.9;background-repeat: no-repeat; background-image: url(../img/border.png); background-color: #29a7a5; color: #ffffff; padding: 7px 15px 7px 15px; width: 200px; display: block; text-decoration: none; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; -webkit-box-shadow: 2px 2px 4px #EDEDED; -moz-box-shadow: 2px 2px 4px #888; -o-box-shadow: 2px 2px 4px #888; border-left: 0px solid #CCCCCC; border-right: 1px solid #E3E3E3; border-bottom: 1px solid #E3E3E3; border-top: 1px solid #E3E3E3; box-shadow: 3px 3px 5px #e8c4c4; }
+        ul.nav li a:hover{background:#ebebeb url(../img/border.png) no-repeat;color:#67a5cd;padding:7px 15px 7px 30px;}
+        /*end*/
+    </style>
+</head>
+<body>
+<!-- Swiper -->
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <div class="demo">
+                <div class="navbox">
+                    <ul class="nav">
+                        <li><a href="#">总用户在线</a></li>
+                        <li><a href="#">GTBU用户在线</a></li>
+                        <li><a href="#">新架构国家可用卡</a></li>
+                        <li><a href="#">新架构多国卡机房分布</a></li>
+                        <li><a href="#">多国卡流量比例分析（140卡）</a></li>
+                        <li><a href="#">三五互联在线情况</a></li>
+                    </ul>
+                </div>
+
+                <div class="navbox">
+                    <ul class="nav">
+                        <li><a href="#">总用户历史在线走势</a></li>
+                        <li><a href="#">GTBU历史在线走势</a></li>
+                        <li><a href="#">在线用户最大数（按国家/天）</a></li>
+                        <li><a href="#">新架构国家机房分布</a></li>
+                        <li><a href="#">国家运营商卡信息报表</a></li>
+                        <li><a href="#">三五互联历史在线走势</a></li>
+                    </ul>
+                </div>
+
+                <div class="navbox">
+                    <ul class="nav">
+                        <li><a href="#">累计登陆用户走势</a></li>
+                        <li><a href="#">-</a></li>
+                        <li><a href="#">卡占用数走势</a></li>
+                        <li><a href="#">机房bam对应卡数量</a></li>
+                        <li><a href="#">在线用户变化分析</a></li>
+                        <li><a href="#">美国/关岛/塞班在线数</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="demo">
+                <div class="navbox">
+                    <ul class="nav">
+                        <li><a href="#">总用户在线</a></li>
+                        <li><a href="#">GTBU用户在线</a></li>
+                        <li><a href="#">新架构国家可用卡</a></li>
+                        <li><a href="#">新架构多国卡机房分布</a></li>
+                        <li><a href="#">多国卡流量比例分析（140卡）</a></li>
+                        <li><a href="#">三五互联在线情况</a></li>
+                    </ul>
+                </div>
+
+                <div class="navbox">
+                    <ul class="nav">
+                        <li><a href="#">总用户历史在线走势</a></li>
+                        <li><a href="#">GTBU历史在线走势</a></li>
+                        <li><a href="#">在线用户最大数（按国家/天）</a></li>
+                        <li><a href="#">新架构国家机房分布</a></li>
+                        <li><a href="#">国家运营商卡信息报表</a></li>
+                        <li><a href="#">三五互联历史在线走势</a></li>
+                    </ul>
+                </div>
+
+                <div class="navbox">
+                    <ul class="nav">
+                        <li><a href="#">累计登陆用户走势</a></li>
+                        <li><a href="#">-</a></li>
+                        <li><a href="#">卡占用数走势</a></li>
+                        <li><a href="#">机房bam对应卡数量</a></li>
+                        <li><a href="#">在线用户变化分析</a></li>
+                        <li><a href="#">美国/关岛/塞班在线数</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">Slide 3</div>
+    </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+</div>
+
+<!-- Swiper JS -->
+<script src="../js/swiper.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        prevButton:'.swiper-button-prev',
+        nextButton:'.swiper-button-next',
+    });
+</script>
+</body>
+</html>
