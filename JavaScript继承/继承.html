@@ -7,18 +7,72 @@
 <body>
 <script>
 //-----------------------one part-----------------------
-//    function Person(first,last) {
-//        this.first = first;
-//        this.last = last;
-//    }
-//    Person.prototype = {
-//        fullName:function () {
-//            return this.first+''+this.last;
-//        },
-//        fullNameReversed:function () {
-//            return this.last+','+this.first;
+
+    function Person(first,last) {
+        this.first = first;
+        this.last = last;
+    }
+
+    Person.prototype = {
+        fullName:function () {
+            return this.first+''+this.last;
+        },
+        fullNameReversed:function () {
+            return this.last+','+this.first;
+        }
+    };
+
+var dw = new Person("ding","wang");
+
+alert(dw.fullName());
+    function Goodperson(first,last) {
+        this.first = first;
+        this.last = last;
+    }
+    Goodperson.prototype = new Person();
+    Goodperson.prototype.constructor = Goodperson;
+    Goodperson.prototype.goodfullname = function () {      //这个一定要写到前面这行代码的后面  否则会出错
+        return this.first + 'good' + this.last;
+    };
+//    Goodperson.prototype = {                 这里是错误的  这是全覆盖  如果这样写 good.fullname()就不能访问
+//        goodfullname:function () {
+//            return this.first + 'good' + this.last;
 //        }
 //    };
+var good = new Goodperson("dada","wang");
+alert(good.fullName());
+alert(good.goodfullname());
+
+
+////alert(dw.fullNamea());             //不能访问到fullNamea
+//Person.prototype = {
+//    fullNamea:function () {
+//        return this.first+''+this.last+'a';
+//    },
+//};
+
+//var dwa = new Person("ding","wang");
+//alert(dwa.fullNamea());
+
+
+//function Dog(){
+//
+//    this.tail = true;
+//
+//}
+//var benji  = new Dog();
+//var rusty = new Dog();
+//
+//Dog.prototype.say  = function(){
+//
+//    return ' Woof ! ';
+//
+//}
+//
+//benji.say();
+
+
+
 //
 //    function Student(first,last,id) {
 //        Person.call(this,first,last);

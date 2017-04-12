@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--1.原型链-->
+<!--2.只继承原型-->
+<!--3.浅拷贝深拷贝-->
+<!--4.call apply-->
+<!--本总结只讨论原型链-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //-----------------------one part-----------------------
+    function Person(first,last) {
+        this.first = first;
+        this.last = last;
+        this.fullNameinstance = function () {
+            return this.first+' instance '+this.last;
+        }
+    }
+
+    Person.prototype = {
+        fullName:function () {
+            return this.first+' proto '+this.last;
+        },
+        fullNameReversed:function () {
+            return this.last+','+this.first;
+        }
+    };
+
+    var dw = new Person("din","wan");
+    alert(dw.fullNameinstance());
+    alert(dw.fullName());
+
+    function Goodperson(first,last) {
+        this.first = first;
+        this.last = last;
+        this.goodfullnameinstance = function () {
+            return this.first + 'good instance ' + this.last;
+        }
+    };
+    Goodperson.prototype = new Person();
+    Goodperson.prototype.constructor = Goodperson;
+    Goodperson.prototype.goodfullname = function () {      //这个一定要写到前面这行代码的后面  否则会出错
+        return this.first + ' good pro ' + this.last;
+    };
+    //    Goodperson.prototype = {                 这里是错误的  这是全覆盖  如果这样写后面的 good.fullname()就不能访问
+    //        goodfullname:function () {
+    //            return this.first + 'good' + this.last;
+    //        }
+    //    };
+    var good = new Goodperson("dada","wang");
+    alert(good.fullNameinstance());
+    alert(good.fullName());
+    alert(good.goodfullnameinstance());
+    alert(good.goodfullname());
+
+
+
+</script>
+</body>
+</html>
