@@ -6,30 +6,104 @@
     <script src="http://unpkg.com/vue/dist/vue.js"></script>
 </head>
 <body>
-<div id="app-7">
-    <ol>
-        <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
-    </ol>
+<div id="app-1">
+    <my-component></my-component>
+</div>
+<div id="app-2">
+    <my-component></my-component>
+    <my-components></my-components>
+</div>
+<div id="app-3">
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+</div>
+<div id="app-4">
+    <child message="hello!"></child>
+</div>
+<div id="app-5">
+    <p>{{total}}</p>
+    <button-counter v-on:increment = 'incrementTotal'></button-counter>
+    <button-counter v-on:increment = 'incrementTotal'></button-counter>
+</div>
+<div id="app-6">
+    <h1>我是父组件的标题</h1>
+    <slot-component>
+        <p>这是一些初始内容</p>
+        <p>这是更多的初始内容</p>
+        <!--<p>这是一些初始内容</p>-->
+        <!--<p>这是更多的初始内容</p>-->
+    </slot-component>
 </div>
 <script type="text/javascript">
-    Vue.component('todo-item',{
-        template:'<li>This is a todo</li>'
-    })
+    <!--要确保在初始化根实例化之前注册了组件-->
 
-    Vue.component('todo-item',{
-        props:['todo'],
-        template:'<li>{{todo.text}}</li>'
-    })
+    Vue.component('my-component',{              //    注册
+        template:'<div>全局注册</div>'
+    });
 
-    var app7 = new Vue({
-        el:'#app-7',
-        data:{
-            groceryList:[
-                {text:'vegetables'},
-                {text:'cheese'},
-                {text:'Whatever else humans are supposed to eat'}
-            ]
+    var app1 = new Vue({                        //   根实例化
+        el:"#app-1"
+    });
+    var child = {
+        template:'<div>局部注册</div>'
+    };
+    var app2 = new Vue({
+        el:"#app-2",
+        components:{
+            "my-components":child
         }
+    });
+    var data = {counter:0};
+    Vue.component('simple-counter',{
+        template:'<button v-on:click="counter+=1">{{counter}}</button>',
+        data:function () {
+            return data
+        }
+    });
+    var simple = new Vue({
+        el:'#app-3'
+    });
+    Vue.component('child',{
+        props:['message'],
+        template:'<span>{{message}}</span>'
+    });
+    var app4 = new Vue({
+        el:"#app-4"
+    });
+    Vue.component('button-counter',{
+        template:'<button v-on:click = "increment">{{counter}}</button>',
+        data:function () {
+            return {
+                counter:0
+            }
+        },
+        methods:{
+            increment:function () {
+                this.counter += 1;
+                this.$emit('increment');
+            }
+        }
+    });
+    var app5 = new Vue({
+        el:"#app-5",
+        data:{
+            total:0
+        },
+        methods:{
+            incrementTotal:function () {
+                this.total += 1
+            }
+        }
+    });
+    Vue.component('slotComponent',{
+       template:'<div>' +
+       '<h2>我是子组件</h2>' +
+       '<slot>只有在没有要分发的内容时才会显示</slot>' +
+       '</div>'
+    });
+    var app6 = new Vue({
+        el:'#app-6'
     })
 </script>
 </body>

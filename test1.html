@@ -9,6 +9,9 @@
 <span value="AN"></span>
 <script>
     jQuery(function ($) {
+        $.each({ name: "itmyhome", addr: "Beijing" },function(i, n){
+            console.info("Name: " + i + ", Value: " + n);
+        });
        alert($("span").attr("value"));
     });
 </script>
