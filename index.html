@@ -4,32 +4,21 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="js/jquery-2.2.3.min.js"></script>
-    <script>
-        $(
-
-        )
-        var a = [1, "wjdj", null,undefined];
-        function aac() {
-            for(var i = 0;i <= a.length;i++ ){
-                alert(a[i]+"类型："+typeof (a[i]))
-            }
-        }
-//      aac();
-//        var i = Infinity;                       最的数值
-//        alert(Number.MAX_VALUE);
-//        alert(Number.MIN_VALUE);
-//        alert(Number.POSITIVE_INFINITY);
-//        alert(Number.NEGATIVE_INFINITY);
-
-        var i = 1234;
-        alert(i.toString());
-
-        var s = "23fgkskg";
-        alert(parseInt(s));      //尽量将字符串转化为整数
-        alert(parseFloat(s));   //尽量讲字符串转化为浮点数
-    </script>
 </head>
 <body>
-
+    <input name="name" class="test">
+    <input name="pass" class="test">
+    <input name="agfa" class="test">
+    <input name="srgg" class="test">
+    <input name="agga" class="test">
+    <input name="gaga" class="test">
+<script>
+    jQuery(function ($) {
+        $(".test").each(function (i) {
+            alert("1");
+            $(this).val(i);
+        });
+    });
+</script>
 </body>
 </html>
