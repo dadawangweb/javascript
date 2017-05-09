@@ -1,0 +1,10 @@
+{
+  "thead":["num","imsi","bam","slot","state"],
+  "tbody":{
+    "tb_num":["4","2","3","1","2","5","2","3","6","99"],
+    "tb_imsi":["imsi1","imsi2","eafjafj","eafjafj","eafjafj","eafjafj","eafjafj","eafjafj","eafjafj","eafjafj"],
+    "tb_bam":["bam1","bam2","eafjafj","eafjafj","eafjafj","eafjafj","eafjafj","eafjafj","eafjafj","eafjafj"],
+    "tb_slot":["slot1","slot2","eafjafj","eafjafj","eafjafj","eafjafj","eafjafj","eafjafj","eafjafj","eafjafj"],
+    "tb_state":["state1","state2","eafjafj","eafjafj","eafjafj","eafjafj","eafjafj","eafjafj","eafjafj","eafjafj"]
+  }
+}
