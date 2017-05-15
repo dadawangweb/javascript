@@ -7,6 +7,7 @@ jQuery(function () {
             type: "POST",
             url: "http://localhost:63342/githubsync/javaScript/tablepage/tabletwo/page.json",
             dataType: "JSON",
+            data:"country=dingwang&org=dingwang",
             success: function (txt) {
                 var tableInit = new Datable(table.selector,table.coloum,txt);
                 tableInit.initTable();
