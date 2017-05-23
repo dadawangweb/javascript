@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>stickyfooter</title>
+</head>
+<style>
+    html, body, #wrap {height: 100%;}
+    body > #wrap {height: auto; min-height: 100%;}
+    #main {padding-bottom: 150px;background-color: #00a8e6}  /* 必须使用和footer相同的高度 */
+    #footer {position: relative;
+        margin-top: -150px; /* footer高度的负值 */
+        height: 150px;
+        clear:both;
+    background-color: palevioletred;}
+</style>
+<body>
+<div id="wrap">
+    <div id="main" class="clearfix">
+        <div id="content">
+        </div>
+        <div id="side">
+        </div>
+    </div>
+</div>
+<div id="footer">
+</div>
+</body>
+<script>
+
+</script>
+</html>

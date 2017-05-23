@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    (function whatBrowser() {
+
+        var BrowserName     = navigator.appName; // 返回浏览器的名称。
+        var BrowserCode     = navigator.appCodeName; // 返回浏览器的代码名。
+        var BrowserVersion  = navigator.appVersion; // 返回浏览器的平台和版本信息。
+        var BrowserAgent    = navigator.userAgent; // 返回由客户机发送服务器的 user-agent 头部的值。
+        var BrowserCookie   = navigator.cookieEnabled; // 返回指明浏览器中是否启用 cookie 的布尔值。
+        var BrowserOnline   = navigator.onLine; //返回指明系统是否处于脱机模式的布尔值。
+        var BrowserPlatform = navigator.platform; // 返回运行浏览器的操作系统平台。
+        var BrowserLanguage = navigator.language; // 返回 OS 的自然语言设置。
+
+        document.write(BrowserName+'\n');
+        document.write(BrowserCode+'\n');
+        document.write(BrowserVersion+"\n");
+        document.write(BrowserAgent+"\n");
+        document.write(BrowserCookie+"\n");
+        document.write(BrowserOnline+"\n");
+        document.write(BrowserPlatform+"\n");
+        document.write(BrowserLanguage+"\n");
+
+
+        var browser = "Failed to identify the browser";
+        if (BrowserAgent.indexOf("Firefox") > -1) {
+            browser = "Firefox";
+        } else if (BrowserAgent.indexOf("Chrome") > -1) {
+            browser = "Chrome";
+        } else if (BrowserAgent.indexOf("MSIE") > -1 && BrowserAgent.indexOf("Trident") > -1) {
+            browser = "IE(8-10)";
+        }
+        console.log('用户浏览器名称：' + browser);
+        console.log('用户浏览器版本：' + BrowserAgent);
+    })();
+</script>
+</body>
+</html>
