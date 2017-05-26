@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //    将被用作当前对象的对象/调用一个对象的一个方法，以另一个对象替换当前对象
+    //    函数可以自动引用合适的上下文对象很重要
+    //call     me 代替 identify执行函数
+    function identify() {
+        return this.name.toUpperCase();
+    }
+
+    function speak() {
+        var greeting = "Hello, I'm" + identify.call( this );
+        console.log( greeting );
+    }
+
+    var me = {
+        name:"Kyle"
+    };
+
+
+    identify.call( me );  //KYLE
+    speak.call( me ); //Hello, I'm KYLE
+
+//    总结1：其实还是执行的identity 只不过identity里面的对象（this）变为了me
+    //sub 代替add 执行add函数
+    function add(a,b)
+    {
+        alert(this);      //为了更好说明
+        alert(a+b);
+    }
+    function sub(a,b)
+    {
+        alert(a-b);
+    }
+
+    add.call(sub,3,1);    //4
+
+//    总结2：其实还是执行add函数，只不过add里面的对象（this）变为了sub
+
+    function foo(num){
+        console.log("foo: ", + num);
+
+        //记录foo被调用的次数
+        this.count++;
+        alert(this.count++); //这里的count为全局变量，如果不执行++ 输出为undefine undefine执行++为NAN
+    }
+
+    foo.count = 0;    //属性名相同，根对象确并不相同
+
+    var i;
+
+    for(i = 0; i<10; i++){
+        if(i>5){
+            foo(i);
+        }
+    }
+    //foo:6
+    //foo:7
+    //foo:8
+    //foo:9
+
+    //foo被调用了多少次
+    console.log(foo.count); // 0 --WTF?
+</script>
+</body>
+</html>
