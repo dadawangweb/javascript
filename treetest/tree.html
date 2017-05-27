@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="tree.css">
+</head>
+<body>
+    <div class="tree" id="tree1">
+    </div>
+</body>
+<script src="tree.js"></script>
+<script>
+    var data=
+        [
+            {name:'1',
+                children:[
+                    {name:'11',
+                        children:[
+                            {
+                                name:'dadawang',
+                                children:[
+                                    {
+                                        name:'123',
+                                        children:[]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                    ]
+            },
+            {name:'2',
+                children:[
+                    {name:'21',
+                        children:[
+                            {
+                                name:'dadawang',
+                                children:[
+                                    {
+                                        name:'123',
+                                        children:[]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {name:'3',
+                children:[
+                    {name:'31',
+                        children:[]
+                    }
+                ]
+            },
+            {name:'4',
+                children:[
+                    {name:'41',
+                        children:[]
+                    }
+                ]
+            },
+            {name:'5',
+                children:[
+                    {name:'51',
+                        children:[]
+                    }
+                ]
+            },
+            {name:'6',
+            children:[
+                {name:'61',
+                    children:[]
+                }
+            ]
+        }
+        ]
+    window.onload=function(){
+        var tree=new Tree('tree1',data);
+    }
+</script>
+</html>

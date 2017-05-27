@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //第五种方法
+    var idTmr;
+    function  getExplorer() {
+        var explorer = window.navigator.userAgent ;
+        //ie
+        if (explorer.indexOf("MSIE") >= 0) {
+            return 'ie';
+        }
+        //firefox
+        else if (explorer.indexOf("Firefox") >= 0) {
+            return 'Firefox';
+        }
+        //Chrome
+        else if(explorer.indexOf("Chrome") >= 0){
+            return 'Chrome';
+        }
+        //Opera
+        else if(explorer.indexOf("Opera") >= 0){
+            return 'Opera';
+        }
+        //Safari
+        else if(explorer.indexOf("Safari") >= 0){
+            return 'Safari';
+        }
+    }
+    function execl() {
+        if(getExplorer()=='ie'){
+            var ExcelApp = new ActiveXObject("Excel.Application");
+            var ExcelSheet = new ActiveXObject("Excel.Sheet");
+            // Make Excel visible through the Application object.
+            ExcelSheet.Application.Visible = true;
+            // Place some text in the first cell of the sheet.
+            ExcelSheet.ActiveSheet.Cells(1,1).Value = "This is column A, row 1";
+            // Save the sheet.
+            ExcelSheet.SaveAs("C:\\TEST.XLS");
+            // Close Excel with the Quit method on the Application object.
+            ExcelSheet.Application.Quit();
+        }
+    }
+
+</script>
+</html>

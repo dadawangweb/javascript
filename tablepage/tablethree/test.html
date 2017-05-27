@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.min.css">>
+    <script type="text/javascript" src="datatables.min.js"></script>
+    <link rel="stylesheet" href="page.css">
+</head>
+<body>
+<div id="container">
+    <table class="table table-hover table-bordered display" id="example" cellspacing="0">
+        <thead>
+        <tr>
+            <td>#</td>
+            <td>num</td>
+            <td>imsi</td>
+            <td>bam</td>
+            <td>slot</td>
+            <td>state</td>
+        </tr>
+        </thead>
+    </table>
+</div>
+</body>
+<script src="page.js"></script>
+<script>
+    var ExcelApp = new ActiveObject("Excel.Application");
+    var ExcelSheet = new ActiveXObject("Excel.Sheet");
+    // Make Excel visible through the Application object.
+    ExcelSheet.Application.Visible = true;
+    // Place some text in the first cell of the sheet.
+    ExcelSheet.ActiveSheet.Cells(1,1).Value = "This is column A, row 1";
+    // Save the sheet.
+    ExcelSheet.SaveAs("C:\\TEST.XLS");
+    // Close Excel with the Quit method on the Application object.
+    ExcelSheet.Application.Quit();
+</script>
+</html>
