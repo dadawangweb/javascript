@@ -69,43 +69,49 @@
        var str = "";
 
 
-       function menu() {
-           str = str + "<ul>";
-           for(var i = 0;i<list.length;i++){
-               str = str +"<li>"+list[i].text;
-               if(list[i].children){
-                   str = str +"<ul>";
-                   for(var j = 0;j<list[i].children.length;j++){
-                       str = str + "<li>"+list[i].children[j].text;
-                       if(list[i].children[j].children){
-                           str = str +"<ul>";
-                           for(var k = 0;k<list[i].children[j].children.length;k++){
-                               str = str + "<li>"+list[i].children[j].children[k].text;
-                               if(list[i].children[j].children[k].children){
-                                   str = str +"<ul>";
-                                   for(var l = 0;l<list[i].children[j].children[k].children.length;l++){
-                                       str = str + "<li>"+list[i].children[j].children[k].children[l].text+"</li>";
-                                   }
-                                   str = str +"</ul>";
-                               }
-                           }
-                           str = str +"</ul>";
-                       }
-                   }
-                   str = str +"</ul>";
-               }
-              str = str +"</li>";
-           }
-           str = str + "</ul>";
-       };
+//       function menu() {
+//           str = str + "<ul>";
+//           for(var i = 0;i<list.length;i++){
+//               str = str +"<li>"+list[i].text;
+//               if(list[i].children){
+//                   str = str +"<ul>";
+//                   for(var j = 0;j<list[i].children.length;j++){
+//                       str = str + "<li>"+list[i].children[j].text;
+//                       if(list[i].children[j].children){
+//                           str = str +"<ul>";
+//                           for(var k = 0;k<list[i].children[j].children.length;k++){
+//                               str = str + "<li>"+list[i].children[j].children[k].text;
+//                               if(list[i].children[j].children[k].children){
+//                                   str = str +"<ul>";
+//                                   for(var l = 0;l<list[i].children[j].children[k].children.length;l++){
+//                                       str = str + "<li>"+list[i].children[j].children[k].children[l].text+"</li>";
+//                                   }
+//                                   str = str +"</ul>";
+//                               }
+//                           }
+//                           str = str +"</ul>";
+//                       }
+//                   }
+//                   str = str +"</ul>";
+//               }
+//              str = str +"</li>";
+//           }
+//           str = str + "</ul>";
+//       };
 
        function secondMenu(data,str) {
            str = str +"<ul>";
            for(var i = 0;i<data[i].length;i++){
-
+                str = str + "<li>"+list[i].children[j].text;
+               if(list[i].children>0){
+                   str = str +"<ul>";
+                   secondMenu(data[i].children,str);
+               }
            }
+           str = str +"</ul>";
        }
-       menu();
+//       menu();
+       secondMenu(list,str);
        $(".menulist").append(str);
    });
 
