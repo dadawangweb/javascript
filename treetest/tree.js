@@ -9,7 +9,7 @@ function Tree(id,data){
 }
 Tree.prototype.init=function(data,ele){
     for(var i=0;i<data.length;i++){
-        var l=document.createElement('li');
+        var l=document.createElement('li');    
         var a=document.createElement('a');
         var t=document.createTextNode(data[i]['name']);
         var _this=this;
