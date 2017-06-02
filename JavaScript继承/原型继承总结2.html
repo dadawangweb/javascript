@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--1.原型链-->
+<!--2.只继承原型-->
+<!--3.浅拷贝深拷贝-->
+<!--4.call apply-->
+<!--本总结只讨论原型链-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+        //-----------------------two part-----------------------
+        function Person(first,last) {
+            this.first = first;
+            this.last = last;
+            this.fullNameinstance = function () {
+                return this.first+' instance '+this.last;
+            }
+        };
+        Person.prototype = {
+            fullName:function () {
+                return this.last+'proto'+this.first;
+            },
+            fullNameReversed:function () {
+                return this.last+','+this.first;
+            }
+        };
+        var dw = new Person("din","wan");
+        alert(dw.fullNameinstance());     //--din instance wan
+        alert(dw.fullName());             //--din proto wan
+
+        function Student(first,last,id) {
+            Person.call(this,first,last);     //call是function才有的    所以Person.prototype.call(this,first,last); 是不行的  也就是说call不能指向Person 的 prototype
+            this.id = id;
+            this.studentnameinstance = function () {
+                return this.first + 'student instance ' + this.last;
+            }
+        };
+        Student.prototype = new Person();
+        //    Student.prototype = {
+        //       getid:function () {
+        //           return this.id;
+        //       }
+        //    };    //如果这样写就会有问题
+        Student.prototype.getid = function () {
+            return this.id;
+        };
+        Student.prototype.studnetnamePro = function () {
+            return this.first + ' student pro ' + this.last;
+        };
+
+        var dinwan = new Student("din","wan","21");
+        alert(dinwan.fullNameinstance());   //--din instance wan
+        alert(dinwan.fullName());           //--din proto wan
+        alert(dinwan.studentnameinstance());  //--din student instance wan
+        alert(dinwan.studnetnamePro());       //--din student pro wan
+        alert(dinwan.getid());               //--21
+</script>
+</body>
+</html>
