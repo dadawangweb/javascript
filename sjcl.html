@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/sjcl.js"></script>
+</head>
+<body>
+<script>
+//    var a = "wo shi yi ge test";
+//    var begin = sjcl.encrypt("password", a); //加密数据
+//    console.log(begin);
+//    var end = sjcl.decrypt("password", begin); //解密数据
+//    console.log(end);
+
+
+    var test ="wo shi two ge test";
+    var temp = sjcl.hash.sha256.hash(test);
+    alert(temp);
+    var begin = sjcl.codec.hex.fromBits(temp);
+    alert(begin);
+
+</script>
+</body>
+</html>

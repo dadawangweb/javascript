@@ -53,100 +53,134 @@ function myPostAction(data, target_url, callback, method) {
             }
         }
     );
-}
+};
 
 function initFilterColumnData() {
     var country_data = {};
-    if (localStorage['countrieslist'] && localStorage['countrieslist'] != 'undefined') {
+    // localStorage.removeItem('countrieslist');
+    // localStorage.removeItem('operatorslist');
+    if (localStorage['countrieslist'] !== 'undefined' && localStorage['countrieslist']['v'] !=='undefined') {
+        $.ajax({
+            type:'POST',
+            url:'http://localhost:8088/api/Country/checkVersion',
+            dataType:'JSON',
+            data:JSON.parse(localStorage['countrieslist'])['v'],
+            success:function (data) {
+                if(typeof data['r'] == false){
+                    localStorage.removeItem('countrieslist');
+                    myPostAction(
+                        null,
+                        "http://localhost:8088/api/getCoverCountryList",
+                        function (data) {
+                            if (data && data['d']) {
+                                localStorage['countrieslist'] = JSON.stringify(data);
+                            }
+                        }
+                    );
+                }
+            }
+        });
         var data = JSON.parse(localStorage['countrieslist']);
-        _.each(data['r']['d'], function (country_detail, country_code) {
+        $.each(data['d'], function (country_code,country_detail) {
             country_data[country_code] = country_detail['name'];
         });
+        makeFilterColumn('CoverCountryList', country_data, true); //初始化覆盖国家
+        makeFilterchoiceColumn('chosenAll', country_data, true, 'ALL');
+        makeFilterchoiceColumn('chosenJP', country_data, true, 'JP');
+        makeFilterchoiceColumn('chosenTH', country_data, true, 'TH');
+        makeFilterchoiceColumn('chosenAU', country_data, true, 'AU');
     } else {
         myPostAction(
             null,
             "http://localhost:8088/api/getCoverCountryList",
             function (data) {
-                if (data && data['r'] && data['r']['d']) {
+                if (data && data['d']) {
                     localStorage['countrieslist'] = JSON.stringify(data);
-                    _.each(data['r']['d'], function (country_detail, country_code) {
-                        country_data[country_code] = country_detail['name'];
+                    $.each(data['d'], function (country_code,country_detail) {
+                        if(country_detail['in_cover'] == true){
+                            country_data[country_code] = country_detail['name'];
+                        }else{
+                            return true;
+                        }
                     });
+                    makeFilterColumn('CoverCountryList', country_data, true); //初始化覆盖国家
+                    makeFilterchoiceColumn('chosenAll', country_data, true, 'ALL');
+                    makeFilterchoiceColumn('chosenJP', country_data, true, 'JP');
+                    makeFilterchoiceColumn('chosenTH', country_data, true, 'TH');
+                    makeFilterchoiceColumn('chosenAU', country_data, true, 'AU');
                 }
             }
         );
     }
 
-    if (localStorage['operatorslist'] && localStorage['operatorslist'] != 'undefined') {
+    if (localStorage['operatorslist'] !== 'undefined'&& localStorage['operatorslist']['v'] !=='undefined') {
+        $.ajax({
+            type:'POST',
+            url:'http://localhost:8088/api/CardOperator/checkVersion',
+            data:JSON.parse(localStorage['operatorslist'])['v'],
+            dataType:'JSON',
+            success:function (data) {
+                if(typeof data['r'] == false){
+                    localStorage.removeItem('operatorslist');
+                    myPostAction(
+                        null,
+                        "http://localhost:8088/api/getOperatorList",
+                        function (data) {
+                            if (data && data['d']) {
+                                localStorage['operatorslist'] = JSON.stringify(data);
+                            }
+                            makeFilterColumn('Operator_id', data, false);  //初始化运营商
+                        }
+                    );
+                }
+            }
+        });
         makeFilterColumn('Operator_id', JSON.parse(localStorage['operatorslist']), false);
     } else {
         myPostAction(
             null,
             "http://localhost:8088/api/getOperatorList",
             function (data) {
-                if (data['r'] && data['r']['d']) {
+                if (data && data['d']) {
                     localStorage['operatorslist'] = JSON.stringify(data);
                 }
                 makeFilterColumn('Operator_id', data, false);  //初始化运营商
             }
         );
     }
-    makeFilterColumn('CoverCountryList', {"r": {"d": country_data}}, true); //初始化覆盖国家
-    makeFilterchoiceColumn('chosenAll', {"r": {"d": country_data}}, true, 'ALL');
-    makeFilterchoiceColumn('chosenJP', {"r": {"d": country_data}}, true, 'JP');
-    makeFilterchoiceColumn('chosenTH', {"r": {"d": country_data}}, true, 'TH');
-    makeFilterchoiceColumn('chosenAU', {"r": {"d": country_data}}, true, 'AU');
-}
+};
 
 
 function makeFilterColumn(column_name, data, sort) {
-    var selector = '.' + column_name;
-    var dataStr = '<option value ="-1" selected>请选择</option>';
-
-    if (sort && sort == true) {
-        var vk = {};
-        _.forEach(data['r']['d'], function (v, k) {
-            vk[v] = k;
+    var str = "";
+    if(sort == true){
+        $.each(data,function (index,value) {
+            str = str +"<option value ="+index+">"+index+"-"+value+"</option>";
         });
-
-        _.each(_.sortBy(data['r']['d'], function (v, k) {
-            return k;
-        }), function (entry_value, entry_key) {
-            dataStr += '<option value="' + vk[entry_value] + '">' + vk[entry_value] + '-' + entry_value + '</option>';
-        });
-    } else {
-        _.each(data['r']['d'], function (entry_value, entry_key) {
-            dataStr += '<option value="' + entry_key + '">' + entry_value + '</option>';
-        });
+    }else{
+        for(var i in data['d']){
+            str = str +"<option>"+data['d'][i]['name']+"</option>";
+        }
     }
-    $(selector).html(dataStr);
-}
+    $("."+column_name).append(str);
+};
 
 function makeFilterchoiceColumn(column_name, data, sort, country) {
-    var selector = '.' + column_name;
-    var dataStr;
-
-    if (sort && sort == true) {
-        var vk = {};
-        _.forEach(data['r']['d'], function (v, k) {
-            vk[v] = k;
-        });
-
-        _.each(_.sortBy(data['r']['d'], function (v, k) {
-            return k;
-        }), function (entry_value, entry_key) {
-            if (vk[entry_value] == country) {
-                dataStr += '<option value="' + vk[entry_value] + '" selected="selected">' + vk[entry_value] + '-' + entry_value + '</option>';
-            } else {
-                dataStr += '<option value="' + vk[entry_value] + '">' + vk[entry_value] + '-' + entry_value + '</option>';
+    var str = "";
+    if(sort == true){
+        $.each(data,function (index,value) {
+            if(index == country){
+                str = str +"<option value ="+index+" selected='selected'>"+index+"-"+value+"</option>";
+            }else{
+                str = str +"<option value ="+index+">"+index+"-"+value+"</option>";
             }
-
         });
-    } else {
-        _.each(data['r']['d'], function (entry_value, entry_key) {
-            dataStr += '<option value="' + entry_key + '">' + entry_value + '</option>';
-        });
+    }else{
+        for(var i in data['d']){
+            str = str +"<option>"+data['d'][i]['name']+"</option>";
+        }
     }
-    $(selector).html(dataStr);
+    $("."+column_name).append(str);
 };
+
 

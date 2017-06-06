@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--调用栈问题-->
+<script>
+    <!--one-->
+    function baz() {
+        //当前调用栈是：baz
+        //当前调用位置是全局作用域
+        console.log("baz");
+        bar();  //bar的调用位置
+    };
+
+    function bar() {
+        //当前调用栈是baz->bar
+        //当前调用位置在baz中
+
+        console.log("bar");
+        foo();  //foo的调用位置
+    };
+
+    function foo() {
+        //当前调用栈是baz->bar->foo
+        //当前调用位置在bar中
+        console.log("foo");
+    };
+    baz(); //baz的调用位置
+
+    <!--two this默认绑定-->
+    function foo(){
+        console.log(this.a);
+    }
+    var a = 2;
+    foo();   //2    默认绑定到全局对象
+
+    function foo() {
+        "use strict";
+
+        console.log(this.a);
+    }
+    var a = 2;
+    foo();   //TypeError:this is undefined  如果使用严格模式（stric mode）那么全局对象将无法使用默认绑定
+
+    <!--three this隐式绑定-->
+    function foo(){
+        console.log(this.a);
+    }
+
+    var obj = {
+        a:2,
+        foo:foo
+    };
+    obj.foo();  //2     调用位置是否有上下文对象
+
+    function foo(){
+        console.log(this.a);
+    }
+    var obj2 = {
+        a:42,
+        foo:foo
+    };
+    var obj1 = {
+        a:2,
+        obj2:obj2
+    };
+    obj1.obj2.foo(); //42  对象属性引用链中只有最顶层或者说最后一层会影响调用位置
+
+    <!--three this隐式绑定丢失-->
+    function foo(){
+        console.log(this.a);
+    }
+    var obj = {
+        a:2,
+        foo:foo
+    };
+    var bar = obj.foo;//函数别名
+    var a = "oops,global"; //a是全局对象的属性
+    bar();  //"oops,global"
+    setTimeout(obj.foo,100); //"oops,global"
+    //javaScript环境中内置的setTimeout（）函数实现和下面的伪代码类似：
+//    function setTimeout(fn,delay){
+//        //等待delay毫秒
+//        fn();
+//    }
+
+
+    var obj = {
+        a:2,
+        foo:function foo(){
+            console.log(this.a);
+        }
+    };
+    var bar = obj.foo;//函数别名
+    var a = "oops,global"; //a是全局对象的属性
+
+    bar();  //"oops,global"   虽然bar是obj.foo的一个引用，但是实际上，它引用的是foo函数的自身
+
+    <!--four this显示绑定-->
+    function foo(){
+        console.log(this.a);
+    }
+
+    var obj = {
+        a:2
+    };
+    foo.call(obj);  // 2
+</script>
+</body>
+</html>
