@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    <!--浅拷贝与深拷贝-->
+//    function anotherFuction(){}
+//
+//    var anotherObject = {
+//        c:true
+//    };
+//
+//    var anotherArray = [];
+//
+//    var myObject = {
+//        a:2,
+//        b:anotherObject,  //引用，不是复本
+//        c:anotherArray,   //另一个引用
+//        d:anotherFuction
+//    }
+//
+//    anotherArray.push(anotherObject,myObject);
+
+    <!--属性描述符-->
+    var myObject = {
+        a:2
+    };
+    console.log(Object.getOwnPropertyDescriptor( myObject, "a" ));
+//    {
+//        value:2,
+//        writable:true,(可写)
+//        enumerable:true,（可枚举）
+//        configurable:true（可配置）
+//    }
+</script>
+</body>
+</html>
