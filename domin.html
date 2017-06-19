@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-2.2.3.min.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    $.ajax({
+        type: "POST",
+        url:"http://192.168.15.30/srp2/CardPlans/peakdata",
+        dataType:'jsonp',
+        data:'',
+        jsonp:'callback',
+        success:function(result) {
+            console.log(result);
+        },
+    });
+</script>
+</body>
+</html>
