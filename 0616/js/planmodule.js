@@ -2,6 +2,10 @@
  * Created by wang.ding on 2017/5/2.
  */
 jQuery(function($) {
+    // $("#container1 .fa").css("display","none");
+    // setTimeout(function () {
+    //     $("#container1 .fa").css("display","block");
+    // },5000);
     var baseUrl = 'http://localhost:8088';  // +document.domain;
     initFilterColumnData();         //初始化chosen select   localstorage
     sessionStorage.removeItem("chartsData");

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li>苹果</li>
+    <li class="fruit">梨子</li>
+    <li>香蕉</li>
+</ul>
+<script src="js/jquery-2.2.3.min.js"></script>
+<script>
+    $(document).ready(function () {
+       var i = $("ul > li").filter(".fruit").index();
+        alert(i);
+    });
+</script>
+</body>
+</html>
