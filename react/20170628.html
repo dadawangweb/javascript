@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello,world!</title>
+    <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+</head>
+<body id="root">
+
+<script type="text/babel">
+    class Toggle extends React.Component{
+        constructor(props) {
+            super(props);
+            this.state = {isToggleOn:true};
+
+            this.handleClick = this.handleClick.bind(this);
+        }
+        handleClick (){
+            this.setState(prevState =>({
+                isToggleOn: !prevState.isToggleOn
+            }))
+        }
+        render(){
+            return (
+                    <button onClick = {this.handleClick}>
+                        {this.state.isToggleOn ? 'ON' : 'OFF'}
+                    </button>
+            );
+        }
+
+    }
+
+
+    ReactDOM.render(
+            <Toggle />,
+        document.getElementById('root')
+    );
+</script>
+</body>
+</html>
