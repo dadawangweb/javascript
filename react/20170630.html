@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello,world!</title>
+    <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+</head>
+<body id="root">
+
+<script type="text/babel">
+//    列表
+//    class List extends React.Component{
+//        constructor(props){
+//            super(props)
+//        }
+//
+//        render(){
+//            const list = [1,2,3,4];
+//            const listitem = list.map(numbers => <li key={numbers.toString()}>{numbers}</li>);
+//            return (
+//                <div>
+//                    <ul>
+//                        {listitem}
+//                    </ul>
+//                </div>
+//            )
+//        }
+//    }
+//
+//    ReactDOM.render(
+//        <List />,
+//        document.getElementById("root")
+//    );
+
+//    表单
+    class Form extends React.Component{
+        constructor(props){
+            super(props);
+
+            this.state = {value:''};
+            this.submitFunction = this.submitFunction.bind(this);
+            this.onchangeFunction = this.onchangeFunction.bind(this);
+        }
+
+        submitFunction(event){
+            alert("value:"+this.state.value)
+        }
+
+        onchangeFunction(event){
+            this.setState({value:event.target.value.toUpperCase()});
+            event.preventDefault();
+        }
+
+        render(){
+            return (
+                    <form onSubmit={this.submitFunction}>
+                        <label>name:</label>
+                        <input type="text" value={this.state.value} onChange={this.onchangeFunction}/>
+                        <input type="submit" value="submit"/>
+                    </form>
+            )
+        }
+    }
+
+    ReactDOM.render(
+        <Form />,
+        document.getElementById("root")
+    )
+</script>
+</body>
+</html>
