@@ -8,6 +8,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/AdminLTE.min.css">
 </head>
+<style>
+    .timeline .time-label span{
+        padding: 5px 15px 5px 15px;
+    }
+    .timeline .box-header{
+        padding: 7px;
+    }
+    .timeline .box{
+        margin-bottom: 0px;
+    }
+    .timeline  .box-title{
+        font-size: 15px;
+    }
+    .timeline li .timeline-item .time{
+        color: #dd4b39;
+        padding: 4px 30px 0px 10px;
+        font-size: 16px;
+    }
+    .timeline h6.box-title{
+        font-weight: 600;
+        color: #3c8dbc;
+    }
+    .timeline-item .col-md-12{
+        padding-right: 0px;
+    }
+</style>
 <body>
 <section class="content-header">
     <div class="header-box">
@@ -31,263 +57,123 @@
                     <div id="container1" style="height: 500px;position: relative">
                         <i class="fa fa-refresh fa-spin" style="position: absolute;left: 50%;top: 50%"></i>
                     </div>
-
             </div>
         </div>
         <div class="col-md-6">
-            <ul class="timeline timeline-inverse">
+            <ul class="timeline">
                 <!-- timeline time label -->
                 <li class="time-label">
-                                <span class="bg-red">
-                                  01 . 2016
-                                </span>
-                    <div class="timeline-item" style="border: none">
-                        <div class="col-md-12" style="padding-left: 0px">
-                            <div class="box box-default collapsed-box">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">Expandable</h3>
-                                    <div class="box-tools pull-right">
-                                        <button type="button" class="btn btn-box-tool"
-                                                data-widget="collapse"><i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                    <!-- /.box-tools -->
-                                </div>
-                                <!-- /.box-header -->
-                                <div class="box-body">
-                                    The body of the box
-                                </div>
-                                <!-- /.box-body -->
-                            </div>
-                            <!-- /.box -->
-                        </div>
-                    </div>
+                    <span class="bg-red">
+                       2016
+                    </span>
                 </li>
-                <li class="time-label">
-                                <span class="bg-red">
-                                  02 . 2016
-                                </span>
-                    <div class="timeline-item">
-                        <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-                        <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                        <div class="timeline-body">
-                            Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                            weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                            jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                            quora plaxo ideeli hulu weebly balihoo...
-                        </div>
-                        <div class="timeline-footer">
-                            <a class="btn btn-primary btn-xs">Read more</a>
-                            <a class="btn btn-danger btn-xs">Delete</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="time-label">
-                                <span class="bg-red">
-                                  03 . 2016
-                                </span>
-                    <div class="timeline-item" style="border: none">
-                        <!--<h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>-->
-                        <!--<div class="timeline-body">-->
-                        <!---->
-                        <!--</div>-->
-                        <div class="col-md-12" style="padding-left: 0px">
-                            <div class="box box-default collapsed-box">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">Expandable</h3>
-
-                                    <div class="box-tools pull-right">
-                                        <button type="button" class="btn btn-box-tool"
-                                                data-widget="collapse"><i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                    <!-- /.box-tools -->
-                                </div>
-                                <!-- /.box-header -->
-                                <div class="box-body">
-                                    The body of the box
-                                </div>
-                                <!-- /.box-body -->
-                            </div>
-                            <!-- /.box -->
-                        </div>
-                    </div>
-
-                </li>
-                <li class="time-label">
-                                <span class="bg-yellow">
-                                  04 . 2016
-                                </span>
-                    <div class="timeline-item">
-                        <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-                        <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                    </div>
-
-                </li>
-                <li class="time-label">
-                                <span class="bg-yellow">
-                                  05 . 2016
-                                </span>
-                    <div class="timeline-item">
-                        <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-                        <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                    </div>
-
-                </li>
-                <li class="time-label">
-                                <span class="bg-yellow">
-                                  06 . 2016
-                                </span>
-                    <div class="timeline-item">
-                        <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-                        <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                    </div>
-
-                </li>
-                <li class="time-label">
-                                <span class="bg-green">
-                                  07 . 2016
-                                </span>
-                    <div class="timeline-item">
-                        <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-                        <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                    </div>
-
-                </li>
-                <li class="time-label">
-                                <span class="bg-green">
-                                  08 . 2016
-                                </span>
-                    <div class="timeline-item">
-                        <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-                        <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                    </div>
-
-                </li>
-                <li class="time-label">
-                                <span class="bg-green">
-                                  09 . 2016
-                                </span>
-                    <div class="timeline-item">
-                        <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-                        <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                    </div>
-
-                </li>
-                <li class="time-label">
-                                <span class="bg-black">
-                                  10 . 2016
-                                </span>
-                    <div class="timeline-item">
-                        <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-                        <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                    </div>
-
-                </li>
-                <li class="time-label">
-                                <span class="bg-black">
-                                  11 . 2016
-                                </span>
-                    <div class="timeline-item">
-                        <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-                        <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                    </div>
-
-                </li>
-                <li class="time-label">
-                                <span class="bg-black">
-                                  12 . 2016
-                                </span>
-                    <div class="timeline-item">
-                        <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-                        <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                    </div>
-
-                </li>
-                <!-- /.timeline-label -->
-                <!-- timeline item -->
                 <li>
-                    <i class="fa fa-envelope bg-blue"></i>
-
-                    <div class="timeline-item">
-                        <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-                        <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                        <div class="timeline-body">
-                            Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                            weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                            jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                            quora plaxo ideeli hulu weebly balihoo...
-                        </div>
-                        <div class="timeline-footer">
-                            <a class="btn btn-primary btn-xs">Read more</a>
-                            <a class="btn btn-danger btn-xs">Delete</a>
-                        </div>
-                    </div>
-                </li>
-                <!-- END timeline item -->
-                <!-- timeline item -->
-                <li>
-                    <i class="fa fa-user bg-aqua"></i>
-
-                    <div class="timeline-item">
-                        <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
-
-                        <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your
-                            friend request
-                        </h3>
-                    </div>
-                </li>
-                <!-- END timeline item -->
-                <!-- timeline item -->
-                <li>
+                    <!-- timeline icon -->
                     <i class="fa fa-comments bg-yellow"></i>
-
                     <div class="timeline-item">
-                        <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
-
-                        <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-                        <div class="timeline-body">
-                            Take me to your leader!
-                            Switzerland is small and neutral!
-                            We are more like Germany, ambitious and misunderstood!
-                        </div>
-                        <div class="timeline-footer">
-                            <a class="btn btn-warning btn-flat btn-xs">View comment</a>
+                        <div class="col-md-12" style="padding-left: 0px">
+                            <div class="box box-default">
+                                <div class="box-header with-border">
+                                    <span class="time"><i class="fa fa-clock-o"></i>2016-07-05</span>
+                                    <h6 class="box-title">国庆节</h6>
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool"
+                                                data-widget="collapse"><i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <!-- /.box-tools -->
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    你可以把Android SDK的tools和platform-tools目录添加到PATH变量中，以便在终端中运行一些Android工具，例如android avd或是adb logcat等。
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                            <!-- /.box -->
                         </div>
                     </div>
                 </li>
-                <!-- END timeline item -->
-                <!-- timeline time label -->
-                <li class="time-label">
-                                <span class="bg-green">
-                                  3 Jan. 2014
-                                </span>
+                <li>
+                    <!-- timeline icon -->
+                    <i class="fa fa-comments bg-yellow"></i>
+                    <div class="timeline-item">
+                        <div class="col-md-12" style="padding-left: 0px">
+                            <div class="box box-default">
+                                <div class="box-header with-border">
+                                    <span class="time"><i class="fa fa-clock-o"></i>2016-07-05</span>
+                                    <h6 class="box-title">国庆节</h6>
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool"
+                                                data-widget="collapse"><i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <!-- /.box-tools -->
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    你可以把Android SDK的tools和platform-tools目录添加到PATH变量中，以便在终端中运行一些Android工具，例如android avd或是adb logcat等。
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                    </div>
                 </li>
-                <!-- /.timeline-label -->
-                <!-- timeline item -->
+                <li>
+                    <!-- timeline icon -->
+                    <i class="fa fa-comments bg-yellow"></i>
+                    <div class="timeline-item">
+                        <div class="col-md-12" style="padding-left: 0px">
+                            <div class="box box-default">
+                                <div class="box-header with-border">
+                                    <span class="time"><i class="fa fa-clock-o"></i>2016-07-05</span>
+                                    <h6 class="box-title">国庆节</h6>
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool"
+                                                data-widget="collapse"><i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <!-- /.box-tools -->
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    你可以把Android SDK的tools和platform-tools目录添加到PATH变量中，以便在终端中运行一些Android工具，例如android avd或是adb logcat等。
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <!-- timeline icon -->
+                    <i class="fa fa-comments bg-yellow"></i>
+                    <div class="timeline-item">
+                        <div class="col-md-12" style="padding-left: 0px">
+                            <div class="box box-default">
+                                <div class="box-header with-border">
+                                    <span class="time"><i class="fa fa-clock-o"></i>2016-07-05</span>
+                                    <h6 class="box-title">国庆节</h6>
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool"
+                                                data-widget="collapse"><i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <!-- /.box-tools -->
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    你可以把Android SDK的tools和platform-tools目录添加到PATH变量中，以便在终端中运行一些Android工具，例如android avd或是adb logcat等。
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <i class="fa fa-clock-o bg-gray"></i>
+                </li>
             </ul>
         </div>
     </div>

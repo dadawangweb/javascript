@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app" v-on:click.prevent=""clickme>
+    <section id="section" v-on:click.stop="clickme">
+        <div id="div" v-on:click.self="clickme">
+            <div id="divtest" v-on:click.capture = "clickme">
+                <span id="span" v-on:click.capture="clickme">
+                    <p id="p" v-on:click.once="clickme">
+                        用鼠标双击我，看看事件的传递真正顺序。
+                    </p>
+                </span>
+            </div>
+        </div>
+    </section>
+    点击事件的响应顺序如下：{{message}}
+</div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            message: ''
+        },
+        methods: {
+            clickme: function (event) {
+                if (this.message === '') {
+                    this.message = event.currentTarget.id
+                } else {
+                    this.message = this.message + '->' + event.currentTarget.id
+                }
+            }
+        }
+    })
+
+//        .prevent: 提交事件不再重载页面
+//
+//        .stop: 阻止单击事件冒泡
+//
+//        .self: 当事件发生在该元素本身而不是子元素的时候会触发
+//
+//        .capture: 事件捕获侦听，事件发生的时候会调用。当元素发生冒泡时，先触发带有该修饰符的元素。若有多个该修饰符，则由外而内触发。
+//                  就是谁有该事件修饰符，就先触发谁。
+//
+//        .once: 跟v-once作用类似，只渲染一次，第二次不会执行
+</script>
+</html>
