@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+
+<div id="app">
+    <p>{{ message }}</p>
+    <my-component :num="testNum"></my-component>
+</div>
+
+</body>
+<script>
+    let child = {
+        template:'<div>A custom component {{num}}</div>',
+        props:{
+            num:{
+                type:Number,
+                default:100
+            }
+        }
+    }
+    new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue.js!',
+            testNum : 10
+        },
+        components:{
+            'my-component':child
+        }
+    })
+</script>
+</html>
