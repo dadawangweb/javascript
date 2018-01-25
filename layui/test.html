@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="layui.css">
+    <title>Title</title>
+</head>
+<body>
+    <table id="demo" lay-filter="test"></table>
+</body>
+<script src="layui.all.js"></script>
+<script>
+    layui.use('table', function(){
+        var table = layui.table;
+
+        //第一个实例
+        table.render({
+            elem: '#demo'
+            ,height: 315
+            ,data: [
+                {"date": "2018/1/25", "activemoney": "44624","activepersons": "223", "activetimes": "331","firstmoney": "0", "firstpersons": "17", "daymoney": "156","daypersons": "4", "daytimes": "8"}
+                ] //数据接口
+            ,page: true //开启分页
+            ,cols: [[ //表头
+                {field: 'date', title: '日期', rowspan: 2, sort: true}
+                ,{field: 'activeRole', title: '活跃角色', colspan: 3}
+                ,{field: 'firstPay', title: '首次付费角色', colspan: 2}
+                ,{field: 'firstDayPay', title: '首日付费角色', colspan: 3}
+            ],[
+                {field: 'activemoney' , title: '付费金额（￥）'},
+                {field: 'activepersons' , title: '付费人数'},
+                {field: 'activetimes' , title: '付费次数'},
+                {field: 'firstmoney' , title: '付费金额（￥）'},
+                {field: 'firstpersons' , title: '付费人数'},
+                {field: 'daymoney' , title: '付费金额（￥）'},
+                {field: 'daypersons' , title: '付费人数'},
+                {field: 'daytimes' , title: '付费次数'}
+            ]]
+
+        });
+
+    });
+</script>
+</html>
